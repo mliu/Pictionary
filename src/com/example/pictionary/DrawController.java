@@ -22,16 +22,18 @@ public class DrawController
     private String guessWord;
     private DrawQueue<DrawObject> queue;
     private int currentPos;
+    private RedrawingView view;
     /**
      * Constructor for the class, takes the attempted word
      *
-     * @param word
+     * @param redrawView the view of this drawing
      */
-    public DrawController()
+    public DrawController(RedrawingView redrawView)
     {
         guessWord = "";
         queue = new DrawQueue<DrawObject>();
         currentPos = 0;
+        view = redrawView;
     }
 
     // ----------------------------------------------------------
@@ -48,7 +50,17 @@ public class DrawController
      * Calls on the redrawview to step through and redraw the user drawing
      */
     public void step() {
-        //TODO: call on the redrawing view to step
+        DrawObject temp = queue.remove();
+        view.step(temp);
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Tells if there is another step in the queue
+     * @return true is queue is empty, else false
+     */
+    public boolean hasNext() {
+        return !queue.isEmpty();
     }
 
     // ----------------------------------------------------------

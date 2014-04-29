@@ -20,7 +20,6 @@ public class DrawControllerTest
     public void setup()
     {
         // does setup
-        draw = new DrawController();
     }
 
 

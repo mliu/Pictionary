@@ -23,11 +23,10 @@ public class StartGuessDialog
     extends Activity
 {
 
-
     // The key value pair to send the recorded drawing to the dialog activity
     public final static String DRAWING_TRANSFER_RECORD =
                                                   "com.Pictionary.StartGuessDialog.DRAWINGNAME";
-
+    private DrawQueue<DrawObject> queue;
 
     private GameController controller;
 
@@ -44,10 +43,10 @@ public class StartGuessDialog
         // a private intent for that function.
         Intent drawingIntent = getIntent();
 
-        //controller = (GameController)drawingIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
-
-
-
+        Bundle b = this.getIntent().getExtras();
+        if (b != null) {
+            queue = b.getParcelable("Drawing");
+        }
     }
 
 
@@ -73,13 +72,9 @@ public class StartGuessDialog
 
         // TODO pass in the drawing name to be used.
         relayDrawingIntent.putExtra(DRAWING_TRANSFER_RECORD, drawingName.getText().toString());
-
-
-        //drawingIntent.putExtra(DRAWING_RECORD, controller);
-
-        //relayDrawingIntent.putExtra("ControllerTransferTest", controller);
-
-
+        Bundle b = new Bundle();
+        b.putParcelable("Drawing", queue);
+        relayDrawingIntent.putExtras(b);
 
 
         startActivity(relayDrawingIntent);

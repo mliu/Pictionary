@@ -24,6 +24,9 @@ public class GuessActivity
 {
 
     private String drawingName;
+    private DrawQueue<DrawObject> queue;
+    private RedrawingView redrawingView;
+    private DrawController controller;
 
     // The key value pair to send the recorded drawing to the dialog activity
     public final static String GUESS_RECORD =
@@ -40,6 +43,34 @@ public class GuessActivity
         // from the DrawActivity activity.
         Intent drawingIntent = getIntent();
         drawingName = drawingIntent.getStringExtra("com.Pictionary.StartGuessDialog.DRAWINGNAME");
+        Bundle b = this.getIntent().getExtras();
+        if (b != null) {
+            queue = b.getParcelable("Drawing");
+        }
+        redrawingView = (RedrawingView) this.findViewById(R.id.redrawingView);
+        System.out.println(redrawingView);
+        controller = new DrawController(redrawingView);
+        controller.setQueue(queue);
+        controller.setWord(drawingName);
+
+        while (controller.hasNext()) {
+            controller.step();
+        }
+
+//        Thread thread1 = new Thread() {
+//            public void run() {
+//                if (controller.hasNext()) {
+//                    try {
+//                        sleep(500);
+//                        controller.step();
+//                    }
+//                    catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//        thread1.start();
     }
 
 

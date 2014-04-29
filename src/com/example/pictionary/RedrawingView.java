@@ -60,26 +60,19 @@ public class RedrawingView extends View{
     /**
      * Steps through the queue's next object and draws that object
      */
-    public boolean step() {
-        DrawObject d = queue.remove();
+    public boolean step(DrawObject d) {
         float touchX = d.getX();
         float touchY = d.getY();
         int event = d.getEvent();
         switch (event) {
             case MotionEvent.ACTION_DOWN:
                 drawPath.moveTo(touchX, touchY);
-                d = new DrawObject(paintColor, touchX, touchY, MotionEvent.ACTION_DOWN);
-                queue.add(d);
                 break;
             case MotionEvent.ACTION_MOVE:
                 drawPath.lineTo(touchX, touchY);
-                d = new DrawObject(paintColor, touchX, touchY, MotionEvent.ACTION_MOVE);
-                queue.add(d);
                 break;
             case MotionEvent.ACTION_UP:
                 drawCanvas.drawPath(drawPath, drawPaint);
-                d = new DrawObject(paintColor, touchX, touchY, MotionEvent.ACTION_UP);
-                queue.add(d);
                 drawPath.reset();
                 break;
             default:
