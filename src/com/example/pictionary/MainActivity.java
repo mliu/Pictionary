@@ -24,18 +24,20 @@ public class MainActivity
     extends Activity
 {
 
-
-
-
-    //public GameController controller; // A new instance of the game is made.
+    // public GameController controller; // A new instance of the game is made.
 
     // The key value pair to send the player amount to DrawActivity
-    public final static String GAME_CONTROLLER = "com.Pictionary.MainActivity.CONTROLLER";
+    public final static String GAME_CONTROLLER =
+                                                   "com.Pictionary.MainActivity.CONTROLLER";
 
 
-
-
-
+    /**
+     * onCreate is called to initialize all activities in Android.
+     * This activity is the first.
+     *
+     * @param savedInstanceState
+     *            The state of the app when re-opening it or booting up.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -59,48 +61,51 @@ public class MainActivity
     {
 
 
-        EditText editTextPlayerCount = (EditText)findViewById(R.id.playerAmount);
+        EditText editTextPlayerCount =
+            (EditText)findViewById(R.id.playerAmount);
 
         try
         {
-            int playerCount = new Integer(editTextPlayerCount.getText().toString()).intValue();
+            int playerCount =
+                new Integer(editTextPlayerCount.getText().toString())
+                    .intValue();
 
-
-            if(playerCount < 1) // Ensures the amount of players is not 0.
+            if (playerCount < 1) // Ensures the amount of players is not 0.
             {
-                Toast.makeText(getApplicationContext(), "Enter a valid number", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    getApplicationContext(),
+                    "Enter a valid number",
+                    Toast.LENGTH_SHORT).show();
             }
             else
             {
-                // Build an intent and the key value pairs in response to the button.
 
-                GameController appState = ((GameController)getApplicationContext());
+                // Build an intent and the key value pairs in response to the
+                // button.
+                GameController appState =
+                    ((GameController)getApplicationContext());
                 appState.createScoreList(playerCount);
-
 
                 Intent mainIntent = new Intent(this, DrawActivity.class);
 
                 // Package the intent with the instance of the game controller
                 // made specifically for this game.
 
-                //controller = new GameController(playerCount);
+                // controller = new GameController(playerCount);
 
                 // TODO GameController needs to implement serializable
-                //mainIntent.putExtra(GAME_CONTROLLER, controller);
-
-
+                // mainIntent.putExtra(GAME_CONTROLLER, controller);
 
                 startActivity(mainIntent);
             }
         }
-        catch(NumberFormatException e) // Ensures the editText isn't blank.
+        catch (NumberFormatException e) // Ensures the editText isn't blank.
         {
-            Toast.makeText(getApplicationContext(), "Enter a valid number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                getApplicationContext(),
+                "Enter a valid number",
+                Toast.LENGTH_SHORT).show();
         }
-
-
-
-
 
     }
 
@@ -110,5 +115,6 @@ public class MainActivity
 
     // TODO Find out how to test Toast notifications.
     // TODO Find out if we need a test class for each activity.
-    // TODO Make sure the game controller isn't unpackaged in terms of an intent in the draw activity twice
+    // TODO Make sure the game controller isn't unpackaged in terms of an intent
+// in the draw activity twice
 }
