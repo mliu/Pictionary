@@ -26,7 +26,8 @@ public class MainActivity
 
 
 
-    public static GameController controller; // A new instance of the game is made.
+
+    //public GameController controller; // A new instance of the game is made.
 
     // The key value pair to send the player amount to DrawActivity
     public final static String GAME_CONTROLLER = "com.Pictionary.MainActivity.CONTROLLER";
@@ -58,8 +59,6 @@ public class MainActivity
     {
 
 
-
-
         EditText editTextPlayerCount = (EditText)findViewById(R.id.playerAmount);
 
         try
@@ -75,15 +74,21 @@ public class MainActivity
             {
                 // Build an intent and the key value pairs in response to the button.
 
+                GameController appState = ((GameController)getApplicationContext());
+                appState.createScoreList(playerCount);
+
+
                 Intent mainIntent = new Intent(this, DrawActivity.class);
 
                 // Package the intent with the instance of the game controller
                 // made specifically for this game.
 
-                controller = new GameController(playerCount);
+                //controller = new GameController(playerCount);
 
                 // TODO GameController needs to implement serializable
                 //mainIntent.putExtra(GAME_CONTROLLER, controller);
+
+
 
                 startActivity(mainIntent);
             }

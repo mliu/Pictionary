@@ -46,7 +46,7 @@ public class DrawActivity
 
 
         // TODO Make sure this isn't called a second time for 2nd round.
-        //GameController controller = (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
+        //controller = (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
 
         // TODO Parse the player amount string to be used for the game mechanic
     }
@@ -76,6 +76,7 @@ public class DrawActivity
         Bundle b = new Bundle();
         b.putParcelable("Drawing", drawView.getQueue());
         drawingIntent.putExtras(b);
+
         startActivity(drawingIntent);
     }
 

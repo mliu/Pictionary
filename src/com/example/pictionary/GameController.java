@@ -1,5 +1,6 @@
 package com.example.pictionary;
 
+import android.app.Application;
 import java.util.ArrayList;
 import java.io.Serializable; // Ability to pass objects between activities.
 
@@ -14,31 +15,82 @@ import java.io.Serializable; // Ability to pass objects between activities.
  * @author Michael Liu
  * @version Apr 16, 2014
  */
-public class GameController implements Serializable {
-    private ArrayList<Integer> scorelist;
-    private int currentPlayer;
-    private DrawController controller;
+public class GameController
+    extends Application
+{
+
+    private ArrayList<Integer> scoreList;
+    private int                currentPlayer;
+    private DrawController     controller;
+    private int                winscore;
+
+/**
+ * Sets the current player, mostly for testing purposes
+ *
+ */
+    public void setCurrentPlayer(int cur)
+    {
+        currentPlayer = cur;
+    }
+
+
 
     /**
-     * sets up our game controller with the correct number of players
+     * initializes our Game Controller
      */
-    public GameController(int numplayers) {
-        scorelist = new ArrayList<Integer>(numplayers);
+    public GameController()
+    {
+        winscore = 100;
         currentPlayer = 1;
     }
 
-    public void onSuccessfulGuess() {
-        // handles score and whatnot after successful guess
+
+
+
+    /**
+     * Takes the score from the draw controller and sets the correct players
+     */
+    public void receiveDrawScore(int drawscore)
+    {
+        addToScore(currentPlayer, drawscore);
+        if (currentPlayer != 1)
+        {
+            addToScore(currentPlayer - 1, drawscore);
+        }
+        else
+        {
+            addToScore(getNumPlayers(), drawscore);
+        }
     }
+
+
+    /**
+     * Creates our score list, with 0 as everyone's starting score
+     *
+     * @param numplayers
+     *            the total number of players
+     */
+    public void createScoreList(int numplayers)
+    {
+        scoreList = new ArrayList<Integer>();
+
+        for (int i = 0; i < numplayers; i++)
+        {
+            scoreList.add(0);
+        }
+    }
+
 
     /**
      * gets number of players
      *
      * @return numplayers
      */
-    public int getNumPlayers() {
-        return scorelist.size();
+    public int getNumPlayers()
+    {
+        return scoreList.size();
     }
+
 
     /**
      * returns an ArrayList of everyones scores
@@ -47,64 +99,89 @@ public class GameController implements Serializable {
      *            is the player's number you want the score of;
      * @return score
      */
-    public int getScore(int playernum) {
-        return scorelist.get(playernum - 1);
+    public int getScore(int playernum)
+    {
+        return scoreList.get(playernum - 1);
     }
 
+
     /**
-     * set the name for the player
+     * Move the game to the next player
      *
      * @return the number representation of the current player
      */
-    public int nextPlayer() {
+    public int nextPlayer()
+    {
         currentPlayer += 1;
-        if (currentPlayer > scorelist.size()) {
+        if (currentPlayer > scoreList.size())
+        {
             currentPlayer = 1;
         }
         return currentPlayer;
     }
 
-    public String getScoreList() {
+
+    /**
+     * Returns the list of scores for use in our round-by-round update, similar
+     * to toString() in function
+     *
+     * @return the scores
+     */
+    public String getScoreList()
+    {
         String endresult = "ScoreList:\n";
 
-        for (int i = 1; i <= scorelist.size(); i++) {
-            endresult = "Player " + i + ": " + scorelist.get(i - 1) + "\n";
+        for (int i = 1; i <= scoreList.size(); i++)
+        {
+            endresult = "Player " + i + ": " + scoreList.get(i - 1) + "\n";
         }
 
         return endresult;
     }
+
 
     /**
      * gets the current player
      *
      * @return the players numbers
      */
-    public int getCurrentPlayer() {
+    public int getCurrentPlayer()
+    {
         // return the current player number
         return currentPlayer;
     }
+
 
     /**
      * tells you if the round/game is won yet
      *
      * @return value
      */
-    public int isWon() {
+    public int isWon()
+    {
+
         int currentwinner = -1;
-        for (int i = 0; i < scorelist.size(); i++) {
-            if (scorelist.get(i) > 20) {
-                if (currentwinner == -1) {
+        for (int i = 0; i < scoreList.size(); i++)
+        {
+            if (scoreList.get(i) > winscore)
+            {
+                if (currentwinner == -1)
+                {
                     currentwinner = i;
                 }
-                else {
-                    if (scorelist.get(i) > scorelist.get(currentwinner)) {
+                else
+                {
+                    if (scoreList.get(i) > scoreList.get(currentwinner))
+                    {
                         currentwinner = i;
                     }
                 }
             }
         }
+        // add one to go from index to players number
         return currentwinner + 1;
     }
+
 
     /**
      * sets the score
@@ -114,9 +191,9 @@ public class GameController implements Serializable {
      * @param score
      *            the score to add
      */
-    public void addToScore(int playernum, int score) {
-        // TODO probs change based on time/percentage and how I get info
-        scorelist.set(playernum, scorelist.get(playernum) + score);
+    public void addToScore(int playernum, int score)
+    {
+        scoreList.set(playernum - 1, scoreList.get(playernum - 1) + score);
     }
 
 }
