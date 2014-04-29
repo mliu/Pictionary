@@ -104,7 +104,7 @@ public class DrawController
      * @return int points earned
      */
     public int getScore() {
-        if(queue.size() == 0) {
+        if(queue.isEmpty()) {
             return 0;
         }
         return guessWord.length() * (int) ((queue.size() - currentPos)/queue.size());
