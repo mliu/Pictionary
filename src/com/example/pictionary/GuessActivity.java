@@ -1,6 +1,10 @@
 package com.example.pictionary;
 
 
+import java.util.TimerTask;
+
+import java.util.Timer;
+
 import android.widget.EditText;
 import android.view.View;
 import android.content.Intent;
@@ -27,6 +31,7 @@ public class GuessActivity
     private DrawQueue<DrawObject> queue;
     private RedrawingView redrawingView;
     private DrawController controller;
+    private Timer timer;
 
     // The key value pair to send the recorded drawing to the dialog activity
     public final static String GUESS_RECORD =
@@ -60,24 +65,19 @@ public class GuessActivity
         controller.setQueue(queue);
         controller.setWord(drawingName);
 
-        while (controller.hasNext()) {
-            controller.step();
-        }
-
-//        Thread thread1 = new Thread() {
-//            public void run() {
-//                if (controller.hasNext()) {
-//                    try {
-//                        sleep(500);
-//                        controller.step();
-//                    }
-//                    catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        };
-//        thread1.start();
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        if (controller.hasNext()) {
+                            controller.step();
+                        }
+                    }
+                });
+            }
+        }, 0, 100);
     }
 
 
