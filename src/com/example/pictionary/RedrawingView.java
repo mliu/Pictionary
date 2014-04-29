@@ -1,5 +1,7 @@
 package com.example.pictionary;
 
+import android.view.SurfaceView;
+
 import android.view.MotionEvent;
 
 import android.view.View;
@@ -19,7 +21,7 @@ import android.graphics.Path;
 * @author Michael Liu
 * @version Apr 10, 2014
 */
-public class RedrawingView extends View{
+public class RedrawingView extends SurfaceView{
     // drawing path
     private Path drawPath;
     // drawing and canvas paint
