@@ -21,6 +21,7 @@ public class DrawController
     // Our fields
     private String guessWord;
     private DrawQueue<DrawObject> queue;
+    private int size;
     private int currentPos;
     private RedrawingView view;
     /**
@@ -70,6 +71,7 @@ public class DrawController
      */
     public void setQueue(DrawQueue<DrawObject> q) {
         queue = q;
+        size = queue.size();
     }
 
     // ----------------------------------------------------------
@@ -107,6 +109,6 @@ public class DrawController
         if(queue.isEmpty()) {
             return 0;
         }
-        return guessWord.length() * (int) ((queue.size() - currentPos)/queue.size());
+        return (int) (100 * ((size - currentPos)/size));
     }
 }
