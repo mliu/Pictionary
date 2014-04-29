@@ -26,7 +26,7 @@ public class MainActivity
 
 
 
-    public static GameController controller; // A new instance of the game is made.
+    //private GameController controller; // A new instance of the game is made.
 
     // The key value pair to send the player amount to DrawActivity
     public final static String GAME_CONTROLLER = "com.Pictionary.MainActivity.CONTROLLER";
@@ -80,7 +80,7 @@ public class MainActivity
                 // Package the intent with the instance of the game controller
                 // made specifically for this game.
 
-                controller = new GameController(playerCount);
+                //controller = new GameController(playerCount);
 
                 // TODO GameController needs to implement serializable
                 //mainIntent.putExtra(GAME_CONTROLLER, controller);

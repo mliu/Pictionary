@@ -44,7 +44,7 @@ public class DrawActivity
 
 
         // TODO Make sure this isn't called a second time for 2nd round.
-        //GameController controller = (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
+        //controller = (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
 
         // TODO Parse the player amount string to be used for the game mechanic
     }
@@ -70,7 +70,12 @@ public class DrawActivity
         // the intent below, to be relayed through the StartGuessDialog
         // Activity to be used for the GuessActivity activity.
 
-        drawingIntent.putExtra(DRAWING_RECORD, "");
+
+        drawingIntent.putExtra(DRAWING_RECORD, ""); //The recorded drawing
+
+
+
+        //drawingIntent.putExtra(DRAWING_RECORD, controller);
 
         startActivity(drawingIntent);
     }

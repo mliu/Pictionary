@@ -29,6 +29,7 @@ public class StartGuessDialog
                                                   "com.Pictionary.StartGuessDialog.DRAWINGNAME";
 
 
+    private GameController controller;
 
 
     @Override
@@ -42,6 +43,8 @@ public class StartGuessDialog
         // Or possibly just send the same intent to the next one and just make
         // a private intent for that function.
         Intent drawingIntent = getIntent();
+
+        //controller = (GameController)drawingIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
 
     }
 
@@ -61,18 +64,23 @@ public class StartGuessDialog
     public void startGuessing(View view)
     {
         // Build an intent and the key value pair in response to the button.
-        Intent drawingIntent = new Intent(this, GuessActivity.class);
+        Intent relayDrawingIntent = new Intent(this, GuessActivity.class);
 
 
         EditText drawingName = (EditText)findViewById(R.id.drawingName);
 
         // TODO pass in the drawing name to be used.
-        drawingIntent.putExtra(DRAWING_TRANSFER_RECORD, drawingName.getText().toString());
+        relayDrawingIntent.putExtra(DRAWING_TRANSFER_RECORD, drawingName.getText().toString());
+
+
+        //drawingIntent.putExtra(DRAWING_RECORD, controller);
+
+        //relayDrawingIntent.putExtra("ControllerTransferTest", controller);
 
 
 
 
-        startActivity(drawingIntent);
+        startActivity(relayDrawingIntent);
     }
 
 
