@@ -1,5 +1,9 @@
 package com.example.pictionary;
 
+import android.os.Parcel;
+
+import android.os.Parcelable;
+
 import android.view.MotionEvent;
 
 // -------------------------------------------------------------------------
@@ -9,13 +13,12 @@ import android.view.MotionEvent;
  * @author Pictionary Team (Chris Deisher, Edward McEnrue, Michael Liu)
  * @version Apr 16, 2014
  */
-public class DrawObject
+public class DrawObject implements Parcelable
 {
     private int color;
     private float x;
     private float y;
     private int event;
-
 
     // ----------------------------------------------------------
     /**
@@ -36,6 +39,27 @@ public class DrawObject
         x = posX;
         y = posY;
         event = initEvent;
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Create a new DrawObject object from a parcel.
+     * @param in the parcelable drawobject to create from
+     */
+    public DrawObject(Parcel in) {
+        readFromParcel(in);
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Instantiates this object from a parcel
+     * @param in the parcelable object to instantiate from
+     */
+    private void readFromParcel(Parcel in) {
+        this.color = in.readInt();
+        this.x = in.readFloat();
+        this.y = in.readFloat();
+        this.event = in.readInt();
     }
 
 
@@ -83,4 +107,27 @@ public class DrawObject
     {
         return event;
     }
+
+
+    public int describeContents() {
+        return 0;
+    }
+
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(color);
+        dest.writeFloat(x);
+        dest.writeFloat(y);
+        dest.writeInt(event);
+    }
+
+    public static final Creator<DrawObject> CREATOR = new Creator<DrawObject>(){
+        public DrawObject createFromParcel(Parcel source) {
+            return new DrawObject(source);
+        }
+
+        public DrawObject[] newArray(int size) {
+            return new DrawObject[size];
+        }
+    };
 }

@@ -75,6 +75,7 @@ public class DrawActivity
         // Activity to be used for the GuessActivity activity.
 
         drawingIntent.putExtra(DRAWING_RECORD, "");
+        drawingIntent.putExtra
 
         startActivity(drawingIntent);
     }
