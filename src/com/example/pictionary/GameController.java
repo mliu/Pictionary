@@ -15,50 +15,82 @@ import java.io.Serializable; // Ability to pass objects between activities.
  * @author Michael Liu
  * @version Apr 16, 2014
  */
-public class GameController extends Application{
+public class GameController
+    extends Application
+{
+
+    private ArrayList<Integer> scoreList;
+    private int                currentPlayer;
+    private DrawController     controller;
+    private int                winscore;
+
+/**
+ * Sets the current player, mostly for testing purposes
+ *
+ */
+    public void setCurrentPlayer(int cur)
+    {
+        currentPlayer = cur;
+    }
 
 
-    public ArrayList<Integer> scoreList;
-    public int currentPlayer;
-    public DrawController controller;
 
-
+    /**
+     * initializes our Game Controller
+     */
     public GameController()
     {
+        winscore = 100;
         currentPlayer = 1;
     }
 
-    //this code is pointless
-//    /**
-//     * sets up our game controller with the correct number of players
-//     */
-//    public GameController(int numplayers) {
-//        scorelist = new ArrayList<Integer>(numplayers);
-//        currentPlayer = 1;
-//    }
 
 
-    public void onSuccessfulGuess() {
-        // handles score and whatnot after successful guess
+
+    /**
+     * Takes the score from the draw controller and sets the correct players
+     */
+    public void receiveDrawScore(int drawscore)
+    {
+        addToScore(currentPlayer, drawscore);
+        if (currentPlayer != 1)
+        {
+            addToScore(currentPlayer - 1, drawscore);
+        }
+        else
+        {
+            addToScore(getNumPlayers(), drawscore);
+        }
     }
 
+
+    /**
+     * Creates our score list, with 0 as everyone's starting score
+     *
+     * @param numplayers
+     *            the total number of players
+     */
     public void createScoreList(int numplayers)
     {
         scoreList = new ArrayList<Integer>();
-        for(int i = 0; i < numplayers; i++)
+
+        for (int i = 0; i < numplayers; i++)
         {
             scoreList.add(0);
         }
     }
+
 
     /**
      * gets number of players
      *
      * @return numplayers
      */
-    public int getNumPlayers() {
+    public int getNumPlayers()
+    {
         return scoreList.size();
     }
+
 
     /**
      * returns an ArrayList of everyones scores
@@ -67,64 +99,89 @@ public class GameController extends Application{
      *            is the player's number you want the score of;
      * @return score
      */
-    public int getScore(int playernum) {
+    public int getScore(int playernum)
+    {
         return scoreList.get(playernum - 1);
     }
 
+
     /**
-     * set the name for the player
+     * Move the game to the next player
      *
      * @return the number representation of the current player
      */
-    public int nextPlayer() {
+    public int nextPlayer()
+    {
         currentPlayer += 1;
-        if (currentPlayer > scoreList.size()) {
+        if (currentPlayer > scoreList.size())
+        {
             currentPlayer = 1;
         }
         return currentPlayer;
     }
 
-    public String getScoreList() {
+
+    /**
+     * Returns the list of scores for use in our round-by-round update, similar
+     * to toString() in function
+     *
+     * @return the scores
+     */
+    public String getScoreList()
+    {
         String endresult = "ScoreList:\n";
 
-        for (int i = 1; i <= scoreList.size(); i++) {
+        for (int i = 1; i <= scoreList.size(); i++)
+        {
             endresult = "Player " + i + ": " + scoreList.get(i - 1) + "\n";
         }
 
         return endresult;
     }
 
+
     /**
      * gets the current player
      *
      * @return the players numbers
      */
-    public int getCurrentPlayer() {
+    public int getCurrentPlayer()
+    {
         // return the current player number
         return currentPlayer;
     }
+
 
     /**
      * tells you if the round/game is won yet
      *
      * @return value
      */
-    public int isWon() {
+    public int isWon()
+    {
+
         int currentwinner = -1;
-        for (int i = 0; i < scoreList.size(); i++) {
-            if (scoreList.get(i) > 20) {
-                if (currentwinner == -1) {
+        for (int i = 0; i < scoreList.size(); i++)
+        {
+            if (scoreList.get(i) > winscore)
+            {
+                if (currentwinner == -1)
+                {
                     currentwinner = i;
                 }
-                else {
-                    if (scoreList.get(i) > scoreList.get(currentwinner)) {
+                else
+                {
+                    if (scoreList.get(i) > scoreList.get(currentwinner))
+                    {
                         currentwinner = i;
                     }
                 }
             }
         }
+        // add one to go from index to players number
         return currentwinner + 1;
     }
+
 
     /**
      * sets the score
@@ -134,10 +191,9 @@ public class GameController extends Application{
      * @param score
      *            the score to add
      */
-    public void addToScore(int playernum, int score) {
-        // TODO probs change based on time/percentage and how I get info
+    public void addToScore(int playernum, int score)
+    {
         scoreList.set(playernum - 1, scoreList.get(playernum - 1) + score);
     }
-    //TODO change all these playernum -1 things to just add playernum+1 in the scorelist jesus fuck
 
 }
