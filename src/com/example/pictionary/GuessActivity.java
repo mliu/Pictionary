@@ -2,9 +2,7 @@ package com.example.pictionary;
 
 
 import java.util.TimerTask;
-
 import java.util.Timer;
-
 import android.widget.EditText;
 import android.view.View;
 import android.content.Intent;
@@ -100,19 +98,27 @@ public class GuessActivity
         EditText nameGuessBox = (EditText)findViewById(R.id.guessBox);
         if(nameGuessBox.getText().toString().equals(drawingName))
         {
+
+            GameController appState =
+                ((GameController)getApplicationContext());
+
+            appState.receiveDrawScore(controller.getScore());
+
+
+
+
             // Build an intent and the key value pair in response to the button.
             Intent guessIntent = new Intent(this, ScoreUpdateActivity.class);
 
 
-
-            // TODO Still need to gather and send the guess data to the
-            // ScoreUpdateActivity.
             guessIntent.putExtra(GUESS_RECORD, "");
 
 
 
             //MainActivity.controller.addToScore(MainActivity.controller.getCurrentPlayer(), 15);
             //MainActivity.controller.getScore(1);
+
+
 
 
             startActivity(guessIntent);

@@ -57,8 +57,7 @@ public class ScoreUpdateActivity
         TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 
         GameController appState = ((GameController)getApplicationContext());
-        appState.nextPlayer();
-        appState.addToScore(appState.getCurrentPlayer(), 10);
+
         String state = "" + appState.getScore(appState.getCurrentPlayer());
 
         scoreDisplay.setText(""+ state);

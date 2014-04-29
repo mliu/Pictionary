@@ -89,6 +89,8 @@ public class DrawActivity
         b.putParcelable("Drawing", drawView.getQueue());
         drawingIntent.putExtras(b);
 
+
+
         startActivity(drawingIntent);
     }
 
