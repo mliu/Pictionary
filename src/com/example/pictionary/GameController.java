@@ -18,7 +18,7 @@ import java.io.Serializable; // Ability to pass objects between activities.
 public class GameController extends Application{
 
 
-    public ArrayList<Integer> scorelist;
+    public ArrayList<Integer> scoreList;
     public int currentPlayer;
     public DrawController controller;
 
@@ -28,13 +28,15 @@ public class GameController extends Application{
         currentPlayer = 1;
     }
 
-    /**
-     * sets up our game controller with the correct number of players
-     */
-    public GameController(int numplayers) {
-        scorelist = new ArrayList<Integer>(numplayers);
-        currentPlayer = 1;
-    }
+    //this code is pointless
+//    /**
+//     * sets up our game controller with the correct number of players
+//     */
+//    public GameController(int numplayers) {
+//        scorelist = new ArrayList<Integer>(numplayers);
+//        currentPlayer = 1;
+//    }
+
 
     public void onSuccessfulGuess() {
         // handles score and whatnot after successful guess
@@ -42,10 +44,10 @@ public class GameController extends Application{
 
     public void createScoreList(int numplayers)
     {
-        scorelist = new ArrayList<Integer>();
+        scoreList = new ArrayList<Integer>();
         for(int i = 0; i < numplayers; i++)
         {
-            scorelist.add(0);
+            scoreList.add(0);
         }
     }
 
@@ -55,7 +57,7 @@ public class GameController extends Application{
      * @return numplayers
      */
     public int getNumPlayers() {
-        return scorelist.size();
+        return scoreList.size();
     }
 
     /**
@@ -66,7 +68,7 @@ public class GameController extends Application{
      * @return score
      */
     public int getScore(int playernum) {
-        return scorelist.get(playernum - 1);
+        return scoreList.get(playernum - 1);
     }
 
     /**
@@ -76,7 +78,7 @@ public class GameController extends Application{
      */
     public int nextPlayer() {
         currentPlayer += 1;
-        if (currentPlayer > scorelist.size()) {
+        if (currentPlayer > scoreList.size()) {
             currentPlayer = 1;
         }
         return currentPlayer;
@@ -85,8 +87,8 @@ public class GameController extends Application{
     public String getScoreList() {
         String endresult = "ScoreList:\n";
 
-        for (int i = 1; i <= scorelist.size(); i++) {
-            endresult = "Player " + i + ": " + scorelist.get(i - 1) + "\n";
+        for (int i = 1; i <= scoreList.size(); i++) {
+            endresult = "Player " + i + ": " + scoreList.get(i - 1) + "\n";
         }
 
         return endresult;
@@ -109,13 +111,13 @@ public class GameController extends Application{
      */
     public int isWon() {
         int currentwinner = -1;
-        for (int i = 0; i < scorelist.size(); i++) {
-            if (scorelist.get(i) > 20) {
+        for (int i = 0; i < scoreList.size(); i++) {
+            if (scoreList.get(i) > 20) {
                 if (currentwinner == -1) {
                     currentwinner = i;
                 }
                 else {
-                    if (scorelist.get(i) > scorelist.get(currentwinner)) {
+                    if (scoreList.get(i) > scoreList.get(currentwinner)) {
                         currentwinner = i;
                     }
                 }
@@ -134,7 +136,7 @@ public class GameController extends Application{
      */
     public void addToScore(int playernum, int score) {
         // TODO probs change based on time/percentage and how I get info
-        scorelist.set(playernum - 1, scorelist.get(playernum - 1) + score);
+        scoreList.set(playernum - 1, scoreList.get(playernum - 1) + score);
     }
     //TODO change all these playernum -1 things to just add playernum+1 in the scorelist jesus fuck
 
