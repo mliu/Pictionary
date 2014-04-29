@@ -37,6 +37,13 @@ public class GuessActivity
     public final static String GUESS_RECORD =
                                                   "com.Pictionary.GuessActivity.MESSAGE";
 
+    /**
+     * Creates the new activity for GuessActivity and unpacks the
+     * intent from StartGuessDialog.
+     *
+     * @param savedInstanceState
+     *            The state of the running application.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

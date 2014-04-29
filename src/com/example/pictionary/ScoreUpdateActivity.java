@@ -30,6 +30,13 @@ public class ScoreUpdateActivity
 
     //private TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 
+    /**
+     * Creates the new activity for ScoreUpdateActivity and unpacks the
+     * intent from GuessActivity.
+     *
+     * @param savedInstanceState
+     *            The state of the running application.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -22,31 +22,37 @@ public class DrawActivity
 {
 
     private DrawingView        drawView;
-    //private GameController controller;
+    // private GameController controller;
 
     // The key value pair to send the recorded drawing to the dialog activity
     public final static String DRAWING_RECORD =
                                                   "com.Pictionary.DrawActivity.MESSAGE";
 
 
+    /**
+     * Creates the new activity for DrawActivity and unpacks the intent from
+     * MainActivity.
+     *
+     * @param savedInstanceState
+     *            The state of the running application.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
-        drawView = (DrawingView) this.findViewById(R.id.drawView);
+        drawView = (DrawingView)this.findViewById(R.id.drawView);
         drawView.setQueue(new DrawQueue<DrawObject>());
 
         // Get the player amount from the incoming intent key value data.
         Intent mainIntent = getIntent();
 
-
-//        Intent i = getIntent();
-//        Deneme dene = (Deneme)i.getSerializableExtra("sampleObject");
-
+// Intent i = getIntent();
+// Deneme dene = (Deneme)i.getSerializableExtra("sampleObject");
 
         // TODO Make sure this isn't called a second time for 2nd round.
-        //controller = (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
+        // controller =
+// (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
 
         // TODO Parse the player amount string to be used for the game mechanic
     }
@@ -71,6 +77,12 @@ public class DrawActivity
         // TODO Get the drawView's recorded drawing data and send it through
         // the intent below, to be relayed through the StartGuessDialog
         // Activity to be used for the GuessActivity activity.
+
+        drawingIntent.putExtra(DRAWING_RECORD, ""); // The recorded drawing
+
+        // drawingIntent.putExtra(DRAWING_RECORD, controller);
+
+        drawingIntent.putExtra(DRAWING_RECORD, "");
 
         drawingIntent.putExtra(DRAWING_RECORD, "");
         Bundle b = new Bundle();

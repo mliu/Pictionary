@@ -1,6 +1,5 @@
 package com.example.pictionary;
 
-
 import android.widget.EditText;
 import android.view.View;
 import android.content.Intent;
@@ -10,11 +9,11 @@ import android.app.Activity;
 
 /**
  * // -------------------------------------------------------------------------
- * /** The StartGuessDialog Activity is used to relay the drawingView's data
- * to the StartGuessDialog class, because our team could not figure out how
- * to use an actual dialog fragment. It's sole purpose is to allow the player
- * to give the android device to the next player, so that they can start
- * the recording at their leisure and continue the game.
+ * /** The StartGuessDialog Activity is used to relay the drawingView's data to
+ * the StartGuessDialog class, because our team could not figure out how to use
+ * an actual dialog fragment. It's sole purpose is to allow the player to give
+ * the android device to the next player, so that they can start the recording
+ * at their leisure and continue the game.
  *
  * @author Pictionary Team (Chris Deisher, Edward McEnrue, Michael Liu)
  * @version Apr 16, 2014
@@ -24,13 +23,20 @@ public class StartGuessDialog
 {
 
     // The key value pair to send the recorded drawing to the dialog activity
-    public final static String DRAWING_TRANSFER_RECORD =
-                                                  "com.Pictionary.StartGuessDialog.DRAWINGNAME";
+    public final static String    DRAWING_TRANSFER_RECORD =
+                                                              "com.Pictionary.StartGuessDialog.DRAWINGNAME";
     private DrawQueue<DrawObject> queue;
 
-    private GameController controller;
 
+    // private GameController controller;
 
+    /**
+     * Creates the new activity for StartGuessDialog and unpacks the intent from
+     * DrawActivity.
+     *
+     * @param savedInstanceState
+     *            The state of the running application.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,20 +50,20 @@ public class StartGuessDialog
         Intent drawingIntent = getIntent();
 
         Bundle b = this.getIntent().getExtras();
-        if (b != null) {
+        if (b != null)
+        {
             queue = b.getParcelable("Drawing");
         }
     }
-
 
 
     // Getting the button to start the ScoreUpdateActivity activity and
     // pass the win/loss data below:
 
     /**
-     * Listens for the startGuessing button click, wherein it is assumed
-     * player 2 is now in control and wants to begin guessing, so the
-     * GuessActivity is called with an intent
+     * Listens for the startGuessing button click, wherein it is assumed player
+     * 2 is now in control and wants to begin guessing, so the GuessActivity is
+     * called with an intent
      *
      * @param view
      *            The button view named "startGuessing"
@@ -67,19 +73,16 @@ public class StartGuessDialog
         // Build an intent and the key value pair in response to the button.
         Intent relayDrawingIntent = new Intent(this, GuessActivity.class);
 
-
         EditText drawingName = (EditText)findViewById(R.id.drawingName);
 
         // TODO pass in the drawing name to be used.
-        relayDrawingIntent.putExtra(DRAWING_TRANSFER_RECORD, drawingName.getText().toString());
+        relayDrawingIntent.putExtra(DRAWING_TRANSFER_RECORD, drawingName
+            .getText().toString());
         Bundle b = new Bundle();
         b.putParcelable("Drawing", queue);
         relayDrawingIntent.putExtras(b);
 
-
         startActivity(relayDrawingIntent);
     }
-
-
 
 }
