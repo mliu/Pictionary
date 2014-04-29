@@ -1,24 +1,25 @@
 package com.example.pictionary;
 
-import android.util.AttributeSet;
-
-import android.content.Context;
+import android.view.MotionEvent;
 
 import android.view.View;
+
+import android.content.Context;
+import android.util.AttributeSet;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.view.MotionEvent;
 
-// -------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 /**
- * Drawing class in charge of user drawing
- *
- * @author Michael Liu
- * @version Apr 10, 2014
- */
-public class DrawingView extends View {
+* Redrawing class in charge of recreating user drawing
+*
+* @author Michael Liu
+* @version Apr 10, 2014
+*/
+public class RedrawingView extends View{
     // drawing path
     private Path drawPath;
     // drawing and canvas paint
@@ -34,14 +35,14 @@ public class DrawingView extends View {
 
     // ----------------------------------------------------------
     /**
-     * Create a new DrawingView object.
+     * Create a new RedrawingView object.
      *
      * @param context
      *            Context of this drawing view
      * @param attrs
      *            Set of attributes of this drawing view
      */
-    public DrawingView(Context context, AttributeSet attrs) {
+    public RedrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setupDrawing();
     }
@@ -57,30 +58,14 @@ public class DrawingView extends View {
 
     // ----------------------------------------------------------
     /**
-     * Sets up the drawing stage
+     * Steps through the queue's next object and draws that object
      */
-    public void setupDrawing() {
-        drawPath = new Path();
-        drawPaint = new Paint();
-        drawPaint.setColor(paintColor);
-        drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(20);
-        drawPaint.setStyle(Paint.Style.STROKE);
-        drawPaint.setStrokeJoin(Paint.Join.ROUND);
-        drawPaint.setStrokeCap(Paint.Cap.ROUND);
-        canvasPaint = new Paint(Paint.DITHER_FLAG);
-    }
-
-    // ----------------------------------------------------------
-    /**
-     * Listens for touch events on the view
-     */
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float touchX = event.getX();
-        float touchY = event.getY();
-        DrawObject d;
-        switch (event.getAction()) {
+    public boolean step() {
+        DrawObject d = queue.remove();
+        float touchX = d.getX();
+        float touchY = d.getY();
+        int event = d.getEvent();
+        switch (event) {
             case MotionEvent.ACTION_DOWN:
                 drawPath.moveTo(touchX, touchY);
                 d = new DrawObject(paintColor, touchX, touchY, MotionEvent.ACTION_DOWN);
@@ -102,6 +87,22 @@ public class DrawingView extends View {
         }
         invalidate();
         return true;
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Sets up the drawing stage
+     */
+    public void setupDrawing() {
+        drawPath = new Path();
+        drawPaint = new Paint();
+        drawPaint.setColor(paintColor);
+        drawPaint.setAntiAlias(true);
+        drawPaint.setStrokeWidth(20);
+        drawPaint.setStyle(Paint.Style.STROKE);
+        drawPaint.setStrokeJoin(Paint.Join.ROUND);
+        drawPaint.setStrokeCap(Paint.Cap.ROUND);
+        canvasPaint = new Paint(Paint.DITHER_FLAG);
     }
 
     // ----------------------------------------------------------
@@ -131,14 +132,5 @@ public class DrawingView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
-    }
-
-    // ----------------------------------------------------------
-    /**
-     * Gets the queue from this DrawingView
-     * @return queue of drawobjects
-     */
-    public DrawQueue<DrawObject> getQueue(){
-        return queue;
     }
 }
