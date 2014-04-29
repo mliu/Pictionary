@@ -1,5 +1,9 @@
 package com.example.pictionary;
 
+import android.os.Parcel;
+
+import android.os.Parcelable;
+
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,13 +14,13 @@ import java.util.Queue;
  * // -------------------------------------------------------------------------
  * /** This class is going to be used as our queue structure for the lines
  * drawn, so they can be removed in order
- * 
+ *
  * @param <E>
  * @author Christopher Deisher (cdd5)
  * @version Apr 16, 2014
  */
 public class DrawQueue<E>
-    implements Queue<E>
+    implements Queue<E>, Parcelable
 {
     private ArrayList<E> queue;
 
@@ -27,6 +31,16 @@ public class DrawQueue<E>
     public DrawQueue()
     {
         queue = new ArrayList<E>();
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Create a new DrawQueue object from a parcel.
+     * @param in the parcelable drawqueue object
+     */
+    public DrawQueue(Parcel in) {
+        this();
+        readFromParcel(in);
     }
 
 
@@ -53,7 +67,7 @@ public class DrawQueue<E>
 
     /**
      * checks to see if the object is in the queue
-     * 
+     *
      * @param object
      *            the object
      * @return true/false
@@ -73,7 +87,7 @@ public class DrawQueue<E>
 
     /**
      * checks to see if multiple items are contained
-     * 
+     *
      * @param ourobj
      *            the objects
      * @return t/f
@@ -102,7 +116,7 @@ public class DrawQueue<E>
 
     /**
      * Sees if array is empty
-     * 
+     *
      * @return t/f
      */
     public boolean isEmpty()
@@ -116,7 +130,7 @@ public class DrawQueue<E>
 
     /**
      * returns a new iterator
-     * 
+     *
      * @return the iterator
      */
     public Iterator<E> iterator()
@@ -128,7 +142,7 @@ public class DrawQueue<E>
 
     /**
      * removes an object
-     * 
+     *
      * @param object
      *            the object to remove
      * @return whether it was succesfully returned
@@ -149,7 +163,7 @@ public class DrawQueue<E>
 
     /**
      * removes an object
-     * 
+     *
      * @param objects
      *            the object to remove
      * @return whether they were succesfully returned
@@ -172,7 +186,7 @@ public class DrawQueue<E>
 
     /**
      * Unsupported
-     * 
+     *
      * @param arg0
      *            useless
      * @return nothing
@@ -187,7 +201,7 @@ public class DrawQueue<E>
 
     /**
      * returns the size of the queue
-     * 
+     *
      * @return size
      */
     public int size()
@@ -198,7 +212,7 @@ public class DrawQueue<E>
 
     /**
      * Unsupported
-     * 
+     *
      * @return exception
      */
     public Object[] toArray()
@@ -211,7 +225,7 @@ public class DrawQueue<E>
 
     /**
      * Unsupported
-     * 
+     *
      * @param array
      *            stop
      * @return it won't end well
@@ -226,7 +240,7 @@ public class DrawQueue<E>
 
     /**
      * add an element
-     * 
+     *
      * @param e
      *            the element
      * @return success?
@@ -240,7 +254,7 @@ public class DrawQueue<E>
 
     /**
      * Unsupported
-     * 
+     *
      * @return errors
      */
     public E element()
@@ -252,7 +266,7 @@ public class DrawQueue<E>
 
     /**
      * Unsupported
-     * 
+     *
      * @return errors
      * @param e
      *            stuff
@@ -277,14 +291,13 @@ public class DrawQueue<E>
 
     /**
      * unsupported
-     * 
+     *
      * @return useless
      */
     public E poll()
     {
         throw new UnsupportedOperationException(
             "We don't support this operation");
-
     }
 
 
@@ -296,4 +309,28 @@ public class DrawQueue<E>
         return queue.remove(0);
     }
 
+
+    public int describeContents() {
+        return 0;
+    }
+
+
+    public void writeToParcel(Parcel out, int arg1) {
+        out.writeList(queue);
+    }
+
+    public static final Parcelable.Creator<DrawQueue<DrawObject>> CREATOR = new Parcelable.Creator<DrawQueue<DrawObject>>() {
+
+        public DrawQueue<DrawObject> createFromParcel(Parcel source){
+            return new DrawQueue<DrawObject>(source);
+        }
+
+        public DrawQueue<DrawObject>[] newArray(int size){
+            return new DrawQueue<DrawObject>[size];
+        }
+    };
+
+    private void readFromParcel(Parcel in) {
+        in.readList(queue, DrawObject.CREATOR);
+    }
 }

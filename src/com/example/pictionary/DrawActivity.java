@@ -74,12 +74,17 @@ public class DrawActivity
         // the intent below, to be relayed through the StartGuessDialog
         // Activity to be used for the GuessActivity activity.
 
+<<<<<<< HEAD
 
         drawingIntent.putExtra(DRAWING_RECORD, ""); //The recorded drawing
 
 
 
         //drawingIntent.putExtra(DRAWING_RECORD, controller);
+=======
+        drawingIntent.putExtra(DRAWING_RECORD, "");
+        drawingIntent.putExtra
+>>>>>>> 10026cfca0affdd28a9078ddc0108fa44dff8545
 
         startActivity(drawingIntent);
     }
