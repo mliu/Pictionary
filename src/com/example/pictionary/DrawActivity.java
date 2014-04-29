@@ -47,12 +47,12 @@ public class DrawActivity
         // Get the player amount from the incoming intent key value data.
         Intent mainIntent = getIntent();
 
-// Intent i = getIntent();
-// Deneme dene = (Deneme)i.getSerializableExtra("sampleObject");
+        // Intent i = getIntent();
+        // Deneme dene = (Deneme)i.getSerializableExtra("sampleObject");
 
         // TODO Make sure this isn't called a second time for 2nd round.
         // controller =
-// (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
+        // (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
 
         // TODO Parse the player amount string to be used for the game mechanic
     }
@@ -63,7 +63,7 @@ public class DrawActivity
 
     /**
      * Listens for the finishDrawing button to be clicked, and if the
-     * drawingview has information entered, then the StartGuessDialog activity
+     * drawingView has information entered, then the StartGuessDialog activity
      * will be called with the drawn recording data passed through an intent.
      *
      * @param view
