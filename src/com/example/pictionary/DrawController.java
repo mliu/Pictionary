@@ -1,5 +1,7 @@
 package com.example.pictionary;
 
+import android.view.MotionEvent;
+
 import java.util.Queue;
 
 import java.util.Iterator;
@@ -18,7 +20,7 @@ public class DrawController
 {
     // Our fields
     private String guessWord;
-    private DrawQueue<DrawObject> draw;
+    private DrawQueue<DrawObject> queue;
     private int currentPos;
     /**
      * Constructor for the class, takes the attempted word
@@ -28,21 +30,25 @@ public class DrawController
     public DrawController(String word)
     {
         guessWord = word;
-        draw = new DrawQueue<DrawObject>();
+        queue = new DrawQueue<DrawObject>();
         currentPos = 0;
     }
 
     // ----------------------------------------------------------
     /**
-     * Adds a new point for user drawing
-     * @param color the color selected
-     * @param x x-coordinate of point
-     * @param y y-coordinate of point
+     * Calls on the redrawview to step through and redraw the user drawing
      */
-    public void addData(int color, int x, int y)
-    {
-        DrawObject temp = new DrawObject(color, x, y);
-        draw.add(temp);
+    public void step() {
+        //TODO: call on the redrawing view to step
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Sets the queue in this controller
+     * @param q queue to set this drawqueue to
+     */
+    public void setQueue(DrawQueue<DrawObject> q) {
+        queue = q;
     }
 
     // ----------------------------------------------------------
@@ -50,7 +56,7 @@ public class DrawController
      * Called when user is drawing and clicks undo
      */
     public void undo() {
-        draw.remove();
+        queue.remove();
     }
 
     // ----------------------------------------------------------
@@ -59,7 +65,7 @@ public class DrawController
      */
     public DrawObject pop() {
         currentPos++;
-        return draw.remove();
+        return queue.remove();
     }
 
     // ----------------------------------------------------------
@@ -68,9 +74,9 @@ public class DrawController
      * @return int points earned
      */
     public int getScore() {
-        if(draw.size() == 0) {
+        if(queue.size() == 0) {
             return 0;
         }
-        return guessWord.length() * (int) ((draw.size() - currentPos)/draw.size());
+        return guessWord.length() * (int) ((queue.size() - currentPos)/queue.size());
     }
 }
