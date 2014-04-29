@@ -27,11 +27,20 @@ public class DrawController
      *
      * @param word
      */
-    public DrawController(String word)
+    public DrawController()
     {
-        guessWord = word;
+        guessWord = "";
         queue = new DrawQueue<DrawObject>();
         currentPos = 0;
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Sets the guessWord for this drawing
+     * @param word the string representing this drawing
+     */
+    public void setWord(String word) {
+        guessWord = word;
     }
 
     // ----------------------------------------------------------
@@ -49,6 +58,15 @@ public class DrawController
      */
     public void setQueue(DrawQueue<DrawObject> q) {
         queue = q;
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Accessor method for the drawqueue
+     * @return the drawqueue
+     */
+    public DrawQueue<DrawObject> getQueue() {
+        return queue;
     }
 
     // ----------------------------------------------------------
