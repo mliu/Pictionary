@@ -24,6 +24,16 @@
 
         <requestFocus />
     </EditText>
+
+    <com.example.pictionary.RedrawingView
+        android:id="@+id/redrawingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/guessBox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#FFFFFFFF" />
     
 </RelativeLayout>
 

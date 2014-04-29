@@ -22,7 +22,6 @@ public class DrawActivity
 {
 
     private DrawingView        drawView;
-    private DrawController     controller;
     //private GameController controller;
 
     // The key value pair to send the recorded drawing to the dialog activity
@@ -35,9 +34,8 @@ public class DrawActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
-        controller = new DrawController();
         drawView = (DrawingView) this.findViewById(R.id.drawView);
-        drawView.setQueue(controller.getQueue());
+        drawView.setQueue(new DrawQueue<DrawObject>());
 
         // Get the player amount from the incoming intent key value data.
         Intent mainIntent = getIntent();
@@ -75,8 +73,9 @@ public class DrawActivity
         // Activity to be used for the GuessActivity activity.
 
         drawingIntent.putExtra(DRAWING_RECORD, "");
-        drawingIntent.putExtra
-
+        Bundle b = new Bundle();
+        b.putParcelable("Drawing", drawView.getQueue());
+        drawingIntent.putExtras(b);
         startActivity(drawingIntent);
     }
 

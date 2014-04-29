@@ -316,7 +316,7 @@ public class DrawQueue<E>
 
 
     public void writeToParcel(Parcel out, int arg1) {
-        out.writeList(queue);
+        out.writeTypedList((ArrayList<DrawObject>) queue);
     }
 
     public static final Parcelable.Creator<DrawQueue<DrawObject>> CREATOR = new Parcelable.Creator<DrawQueue<DrawObject>>() {
@@ -326,11 +326,11 @@ public class DrawQueue<E>
         }
 
         public DrawQueue<DrawObject>[] newArray(int size){
-            return new DrawQueue<DrawObject>[size];
+            return new DrawQueue[size];
         }
     };
 
     private void readFromParcel(Parcel in) {
-        in.readList(queue, DrawObject.CREATOR);
+        in.readTypedList((ArrayList<DrawObject>) queue, DrawObject.CREATOR);
     }
 }
