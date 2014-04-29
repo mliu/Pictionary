@@ -36,6 +36,9 @@ public class ScoreUpdateActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_update);
 
+
+
+
         // TODO Get the recorded drawing data from the incoming intent key
         // value pair relayed from the StartGuessDialog activity, and sent
         // from the DrawActivity activity.
@@ -43,6 +46,15 @@ public class ScoreUpdateActivity
 
         //scoreDisplay.setText(MainActivity.controller.getScoreList());
         //scoreDisplay.setText("bagger 849o5349");
+
+        TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
+
+        GameController appState = ((GameController)getApplicationContext());
+        appState.nextPlayer();
+        appState.addToScore(appState.getCurrentPlayer(), 10);
+        String state = "" + appState.getScore(appState.getCurrentPlayer());
+
+        scoreDisplay.setText(""+ state);
     }
 
 

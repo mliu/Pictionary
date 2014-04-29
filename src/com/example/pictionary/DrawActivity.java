@@ -22,7 +22,7 @@ public class DrawActivity
 {
 
     private DrawingView        drawView;
-
+    private DrawController     controller;
     //private GameController controller;
 
     // The key value pair to send the recorded drawing to the dialog activity
@@ -35,9 +35,13 @@ public class DrawActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
+        controller = new DrawController();
+        drawView = (DrawingView) this.findViewById(R.id.drawView);
+        drawView.setQueue(controller.getQueue());
 
         // Get the player amount from the incoming intent key value data.
         Intent mainIntent = getIntent();
+
 
 //        Intent i = getIntent();
 //        Deneme dene = (Deneme)i.getSerializableExtra("sampleObject");

@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:background="#FFCCCCCC"
     android:orientation="vertical" >
-
+    
     <Button
         android:id="@+id/finishGuessing"
         android:layout_width="match_parent"
@@ -20,10 +20,9 @@
         android:layout_above="@+id/finishGuessing"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:inputType="text" >
+        android:inputType="text" />
 
-        <requestFocus />
-    </EditText>
+
     
 </RelativeLayout>
 
