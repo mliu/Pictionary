@@ -7,6 +7,10 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
     
+     <instrumentation
+        android:targetPackage="cs2114.minesweeper"
+        android:name="android.test.InstrumentationTestRunner"/>
+    
 <application
     
         android:name="com.example.pictionary.GameController"
@@ -39,6 +43,8 @@
             android:name="com.example.pictionary.StartGuessDialog"
             android:label="@string/title_activity_start_guess_dialog" >
         </activity>
+        
+        <uses-library android:name="android.test.runner"/>
     </application>
 
 </manifest>

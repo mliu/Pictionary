@@ -75,7 +75,8 @@ public class GameController
      */
     public void createScoreList(int numplayers)
     {
-        scoreList = new ArrayList<Integer>();
+
+        scoreList = new ArrayList<Integer>(5);
 
         for (int i = 0; i < numplayers; i++)
         {
