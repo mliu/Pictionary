@@ -41,7 +41,7 @@ public class GameController
      */
     public GameController()
     {
-        winscore = 100;
+        winscore = 500;
         currentPlayer = 1;
     }
 
@@ -183,7 +183,7 @@ public class GameController
             {
                 if (currentwinner == -1)
                 {
-                    currentwinner = i;
+                    currentwinner = i + 1;
                 }
                 else
                 {
@@ -195,7 +195,7 @@ public class GameController
             }
         }
         // add one to go from index to players number
-        return currentwinner + 1;
+        return currentwinner;
     }
 
 

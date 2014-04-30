@@ -1,6 +1,7 @@
 package com.example.pictionary;
 
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
@@ -56,12 +57,26 @@ public class ScoreUpdateActivity
 
 
         TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
+        TextView winnerDisplay = (TextView)findViewById(R.id.winnerDisplay);
+        Button newMatchButton = (Button)findViewById(R.id.startNewMatch);
 
         GameController gameState = ((GameController)getApplicationContext());
 
         String state = "" + gameState.getScoreList();
 
         scoreDisplay.setText(""+ state);
+
+
+        int winner = gameState.isWon();
+        if(winner == -1)
+        {
+            winnerDisplay.setText("Who will win?");
+        }
+        else
+        {
+            winnerDisplay.setText("player " + winner + " won!");
+            newMatchButton.setEnabled(false);
+        }
     }
 
 

@@ -19,6 +19,15 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Bagger288" />
+        android:text="sofia sucks" />
+
+    <TextView
+        android:id="@+id/winnerDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Play to 100 points" />
     
 </RelativeLayout>

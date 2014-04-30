@@ -15,19 +15,20 @@ public final class R {
     }
     public static final class id {
         public static final int drawView=0x7f060000;
-        public static final int drawingName=0x7f06000d;
+        public static final int drawingName=0x7f06000e;
         public static final int finishDrawing=0x7f060001;
         public static final int finishGuessing=0x7f060005;
         public static final int gameStartButton=0x7f060006;
         public static final int giveUp=0x7f060004;
         public static final int guessBox=0x7f060003;
-        public static final int guessInstructions=0x7f06000b;
-        public static final int nameDrawingInstructions=0x7f06000c;
+        public static final int guessInstructions=0x7f06000c;
+        public static final int nameDrawingInstructions=0x7f06000d;
         public static final int playerAmount=0x7f060007;
         public static final int redrawingView=0x7f060002;
         public static final int scoreDisplay=0x7f060009;
-        public static final int startGuessing=0x7f06000a;
+        public static final int startGuessing=0x7f06000b;
         public static final int startNewMatch=0x7f060008;
+        public static final int winnerDisplay=0x7f06000a;
     }
     public static final class layout {
         public static final int activity_draw=0x7f030000;
