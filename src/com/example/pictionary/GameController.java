@@ -174,7 +174,7 @@ public class GameController
     /**
      * tells you if the round/game is won yet
      * 
-     * @return value
+     * @return -1 if no winner, player number of winner
      */
     public int isWon()
     {
