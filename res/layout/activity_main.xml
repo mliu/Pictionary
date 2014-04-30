@@ -11,7 +11,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentBottom="true"
 	    android:layout_alignParentLeft="true"
-	    android:text="Start Drawing"
+	    android:text="Player 1 Start Drawing"
 	    android:onClick="startDrawing" />
 
 	<EditText
@@ -21,11 +21,18 @@
 	    android:layout_centerHorizontal="true"
 	    android:layout_centerVertical="true"
 	    android:ems="10" 
-	    android:inputType="number" >
+	    android:inputType="number"
+	    android:text="Input player amount here" >
 
 	    <requestFocus />
 	</EditText>
 
-
+	<TextView
+	    android:id="@+id/gameInstructions"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:text="Welcome to Pictionary!\nThe goal of the game is to be the first artist or guesser to achieve 500 points. Player 1 is the person who has the device at the moment. Player 1 will draw their picture for player 2 to guess it's name. Don't use any words or letters though! GLHF also no re" />
 
 </RelativeLayout>
