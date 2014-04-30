@@ -9,7 +9,7 @@ import java.io.Serializable; // Ability to pass objects between activities.
  * /** Controls all information that must stay consistent throughout a game. It
  * implements the Serializable interface in order to be shared between each
  * activity.
- *
+ * 
  * @author (cdd5) Chris
  * @author Edward McEnrue
  * @author Michael Liu
@@ -26,7 +26,7 @@ public class GameController
 
     /**
      * Sets the current player, mostly for testing purposes
-     *
+     * 
      * @param cur
      *            is the current player you want
      */
@@ -49,7 +49,7 @@ public class GameController
     /**
      * Takes the score from the draw controller and adds it to the correct
      * players
-     *
+     * 
      * @param drawscore
      *            is the calculated score for the round
      */
@@ -69,7 +69,7 @@ public class GameController
 
     /**
      * Creates our score list, with 0 as everyone's starting score
-     *
+     * 
      * @param numplayers
      *            the total number of players
      */
@@ -86,7 +86,7 @@ public class GameController
 
     /**
      * gets number of players
-     *
+     * 
      * @return numplayers
      */
     public int getNumPlayers()
@@ -97,7 +97,7 @@ public class GameController
 
     /**
      * returns an ArrayList of everyones scores
-     *
+     * 
      * @param playernum
      *            is the player's number you want the score of;
      * @return score
@@ -110,7 +110,7 @@ public class GameController
 
     /**
      * Move the game to the next player
-     *
+     * 
      * @return the number representation of the current player
      */
     public int nextPlayer()
@@ -127,7 +127,7 @@ public class GameController
     /**
      * Returns the list of scores for use in our round-by-round update, similar
      * to toString() in function
-     *
+     * 
      * @return the scores
      */
     public String getScoreList()
@@ -136,13 +136,15 @@ public class GameController
 
         for (int i = 1; i <= scoreList.size(); i++)
         {
-            endresult += "Player " + i + ": " + scoreList.get(i - 1) + " points";
+            endresult +=
+                "Player " + i + ": " + scoreList.get(i - 1) + " points";
 
-            if(i == currentPlayer)
+            if (i == currentPlayer)
             {
                 endresult += " (The guesser)\n";
             }
-            else if(i == currentPlayer - 1 || (currentPlayer == 1 && i == scoreList.size()))
+            else if (i == currentPlayer - 1
+                || (currentPlayer == 1 && i == scoreList.size()))
             {
                 endresult += " (The artist)\n";
             }
@@ -158,7 +160,7 @@ public class GameController
 
     /**
      * gets the current player
-     *
+     * 
      * @return the players numbers
      */
     public int getCurrentPlayer()
@@ -170,7 +172,7 @@ public class GameController
 
     /**
      * tells you if the round/game is won yet
-     *
+     * 
      * @return value
      */
     public int isWon()
@@ -183,7 +185,7 @@ public class GameController
             {
                 if (currentwinner == -1)
                 {
-                    currentwinner = i + 1;
+                    currentwinner = i;
                 }
                 else
                 {
@@ -194,6 +196,10 @@ public class GameController
                 }
             }
         }
+        if (currentwinner != -1)
+        {
+            currentwinner++;
+        }
         // add one to go from index to players number
         return currentwinner;
     }
@@ -201,7 +207,7 @@ public class GameController
 
     /**
      * sets the score
-     *
+     * 
      * @param playernum
      *            the players number
      * @param score
