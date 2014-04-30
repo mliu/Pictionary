@@ -25,8 +25,7 @@ public class DrawActivity
     // private GameController controller;
 
     // The key value pair to send the recorded drawing to the dialog activity
-    public final static String DRAWING_RECORD =
-                                                  "com.Pictionary.DrawActivity.MESSAGE";
+    //public final static String DRAWING_RECORD = "com.Pictionary.DrawActivity.MESSAGE";
 
 
     /**
@@ -45,7 +44,7 @@ public class DrawActivity
         drawView.setQueue(new DrawQueue<DrawObject>());
 
         // Get the player amount from the incoming intent key value data.
-        Intent mainIntent = getIntent();
+        // Intent mainIntent = getIntent();
 
         // Intent i = getIntent();
         // Deneme dene = (Deneme)i.getSerializableExtra("sampleObject");
@@ -54,7 +53,6 @@ public class DrawActivity
         // controller =
         // (GameController)mainIntent.getSerializableExtra(MainActivity.GAME_CONTROLLER);
 
-        // TODO Parse the player amount string to be used for the game mechanic
     }
 
 
@@ -78,18 +76,11 @@ public class DrawActivity
         // the intent below, to be relayed through the StartGuessDialog
         // Activity to be used for the GuessActivity activity.
 
-        drawingIntent.putExtra(DRAWING_RECORD, ""); // The recorded drawing
-
         // drawingIntent.putExtra(DRAWING_RECORD, controller);
 
-        drawingIntent.putExtra(DRAWING_RECORD, "");
-
-        drawingIntent.putExtra(DRAWING_RECORD, "");
         Bundle b = new Bundle();
-        b.putParcelable("Drawing", drawView.getQueue());
+        b.putParcelable("Drawing", drawView.getQueue());// The recorded drawing
         drawingIntent.putExtras(b);
-
-
 
         startActivity(drawingIntent);
     }

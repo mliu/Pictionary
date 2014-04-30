@@ -1,11 +1,8 @@
 package com.example.pictionary;
 
 import android.view.MotionEvent;
-
 import java.util.Queue;
-
 import java.util.Iterator;
-
 
 /**
  * // -------------------------------------------------------------------------
@@ -19,15 +16,18 @@ import java.util.Iterator;
 public class DrawController
 {
     // Our fields
-    private String guessWord;
+    private String                guessWord;
     private DrawQueue<DrawObject> queue;
-    private int size;
-    private int currentPos;
-    private RedrawingView view;
+    private int                   size;
+    private int                   currentPos;
+    private RedrawingView         view;
+
+
     /**
      * Constructor for the class, takes the attempted word
      *
-     * @param redrawView the view of this drawing
+     * @param redrawView
+     *            the view of this drawing
      */
     public DrawController(RedrawingView redrawView)
     {
@@ -37,78 +37,102 @@ public class DrawController
         view = redrawView;
     }
 
+
     // ----------------------------------------------------------
     /**
      * Sets the guessWord for this drawing
-     * @param word the string representing this drawing
+     *
+     * @param word
+     *            the string representing this drawing
      */
-    public void setWord(String word) {
+    public void setWord(String word)
+    {
         guessWord = word;
     }
+
 
     // ----------------------------------------------------------
     /**
      * Calls on the redrawview to step through and redraw the user drawing
      */
-    public void step() {
+    public void step()
+    {
         DrawObject temp = queue.remove();
         view.step(temp);
     }
 
+
     // ----------------------------------------------------------
     /**
      * Tells if there is another step in the queue
+     *
      * @return true is queue is empty, else false
      */
-    public boolean hasNext() {
+    public boolean hasNext()
+    {
         return !queue.isEmpty();
     }
+
 
     // ----------------------------------------------------------
     /**
      * Sets the queue in this controller
-     * @param q queue to set this drawqueue to
+     *
+     * @param q
+     *            queue to set this drawqueue to
      */
-    public void setQueue(DrawQueue<DrawObject> q) {
+    public void setQueue(DrawQueue<DrawObject> q)
+    {
         queue = q;
         size = queue.size();
     }
 
+
     // ----------------------------------------------------------
     /**
      * Accessor method for the drawqueue
+     *
      * @return the drawqueue
      */
-    public DrawQueue<DrawObject> getQueue() {
+    public DrawQueue<DrawObject> getQueue()
+    {
         return queue;
     }
+
 
     // ----------------------------------------------------------
     /**
      * Called when user is drawing and clicks undo
      */
-    public void undo() {
+    public void undo()
+    {
         queue.remove();
     }
+
 
     // ----------------------------------------------------------
     /**
      * Called when redrawing for user
      */
-    public DrawObject pop() {
+    public DrawObject pop()
+    {
         currentPos++;
         return queue.remove();
     }
 
+
     // ----------------------------------------------------------
     /**
      * Gets score when user guesses correctly
+     *
      * @return int points earned
      */
-    public int getScore() {
-        if(queue.isEmpty()) {
+    public int getScore()
+    {
+        if (queue.isEmpty())
+        {
             return 0;
         }
-        return (int) (100 * ((size - currentPos)/size));
+        return (int)(100 * ((size - currentPos) / size));
     }
 }

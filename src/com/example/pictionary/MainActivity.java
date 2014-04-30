@@ -27,13 +27,12 @@ public class MainActivity
     // public GameController controller; // A new instance of the game is made.
 
     // The key value pair to send the player amount to DrawActivity
-    public final static String GAME_CONTROLLER =
-                                                   "com.Pictionary.MainActivity.CONTROLLER";
-
+    // public final static String GAME_CONTROLLER =
+// "com.Pictionary.MainActivity.CONTROLLER";
 
     /**
-     * onCreate is called to initialize all activities in Android.
-     * This activity is the first.
+     * onCreate is called to initialize all activities in Android. This activity
+     * is the first.
      *
      * @param savedInstanceState
      *            The state of the app when re-opening it or booting up.
@@ -60,15 +59,13 @@ public class MainActivity
     public void startDrawing(View view)
     {
 
-
         EditText editTextPlayerCount =
             (EditText)findViewById(R.id.playerAmount);
 
         try
         {
             int playerCount =
-                new Integer(editTextPlayerCount.getText().toString())
-                    .intValue();
+                Integer.valueOf(editTextPlayerCount.getText().toString());
 
             if (playerCount < 1) // Ensures the amount of players is not 0.
             {
@@ -82,9 +79,9 @@ public class MainActivity
 
                 // Build an intent and the key value pairs in response to the
                 // button.
-                GameController appState =
+                GameController gameState =
                     ((GameController)getApplicationContext());
-                appState.createScoreList(playerCount);
+                gameState.createScoreList(playerCount);
 
                 Intent mainIntent = new Intent(this, DrawActivity.class);
 

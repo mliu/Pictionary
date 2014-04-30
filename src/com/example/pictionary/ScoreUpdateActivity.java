@@ -25,8 +25,7 @@ public class ScoreUpdateActivity
 
     // The key value pair to send the recorded score to send for the new round's
     // DrawActivity.
-    public final static String SCORE_RECORD =
-                                                  "com.Pictionary.ScoreUpdateActivity.MESSAGE";
+    //public final static String SCORE_RECORD = "com.Pictionary.ScoreUpdateActivity.MESSAGE";
 
     //private TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 
@@ -46,27 +45,25 @@ public class ScoreUpdateActivity
 
 
 
+
         // TODO Get the recorded drawing data from the incoming intent key
         // value pair relayed from the StartGuessDialog activity, and sent
         // from the DrawActivity activity.
-        Intent guessIntent = getIntent();
+        //Intent guessIntent = getIntent();
 
         //scoreDisplay.setText(MainActivity.controller.getScoreList());
         //scoreDisplay.setText("bagger 849o5349");
 
+
         TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 
-        GameController appState = ((GameController)getApplicationContext());
+        GameController gameState = ((GameController)getApplicationContext());
 
-        String state = "" + appState.getScore(appState.getCurrentPlayer());
+        String state = "" + gameState.getScoreList();
 
         scoreDisplay.setText(""+ state);
     }
 
-
-
-
-    // TODO I suppose a win game condition has to be eventually implemented.
 
 
 
@@ -76,10 +73,10 @@ public class ScoreUpdateActivity
     // win/loss rollover data below:
 
 
-    // TODO update description once relevant behavior is known.
     /**
      * Listens for the beginNewRound button to be clicked, wherein this method
-     * will start the DrawActivity again.
+     * will start the DrawActivity again. This will start the beginning of
+     * a new round of the game, and the guesser becomes drawer.
      *
      * @param view
      *            The button view named "beginNewRound"
@@ -91,12 +88,10 @@ public class ScoreUpdateActivity
 
         // TODO Still need to gather and send the guess data to the
         // DrawActivity.
-        newRoundIntent.putExtra(SCORE_RECORD, "");
+        //newRoundIntent.putExtra(SCORE_RECORD, "");
 
         startActivity(newRoundIntent);
 
-        // TODO probably will have to destroy the previous drawing somehow.
-        // TODO ^^^^ How do you store data throughout the app?
     }
 
 

@@ -32,8 +32,7 @@ public class GuessActivity
     private Timer timer;
 
     // The key value pair to send the recorded drawing to the dialog activity
-    public final static String GUESS_RECORD =
-                                                  "com.Pictionary.GuessActivity.MESSAGE";
+    //public final static String GUESS_RECORD = "com.Pictionary.GuessActivity.MESSAGE";
 
     /**
      * Creates the new activity for GuessActivity and unpacks the
@@ -48,21 +47,26 @@ public class GuessActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess);
 
-        // TODO Get the recorded drawing data from the incoming intent key
-        // value pair relayed from the StartGuessDialog activity, and sent
-        // from the DrawActivity activity.
+
         Intent drawingIntent = getIntent();
-        drawingName = drawingIntent.getStringExtra("com.Pictionary.StartGuessDialog.DRAWINGNAME");
+        drawingName = drawingIntent.getStringExtra("drawing_name"); // The previously entered name for the drawing
+
+
+        // The intent is unpackaged and the queue holding the drawing is
+        // received.
         Bundle b = this.getIntent().getExtras();
         if (b != null) {
             queue = b.getParcelable("Drawing");
         }
+
+        // The redrawingView is given the queue.
         redrawingView = (RedrawingView) this.findViewById(R.id.redrawingView);
         System.out.println(redrawingView);
         controller = new DrawController(redrawingView);
         controller.setQueue(queue);
         controller.setWord(drawingName);
 
+        // The Ui thread handles the speed at which the drawing is redrawn.
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -80,7 +84,7 @@ public class GuessActivity
 
 
 
-    // Getting the button to start the ScoreUpdateActivity activity and
+    // Getting the buttons to start the ScoreUpdateActivity activity and
     // pass the win/loss data below:
 
     /**
@@ -95,14 +99,17 @@ public class GuessActivity
     public void finishGuessing(View view)
     {
 
+
+
         EditText nameGuessBox = (EditText)findViewById(R.id.guessBox);
+
+        // The next screen only shows if a correct guess happened.
         if(nameGuessBox.getText().toString().equals(drawingName))
         {
-
-            GameController appState =
+            GameController gameState =
                 ((GameController)getApplicationContext());
 
-            appState.receiveDrawScore(controller.getScore());
+            gameState.receiveDrawScore(controller.getScore()); // Add points
 
 
 
@@ -111,7 +118,7 @@ public class GuessActivity
             Intent guessIntent = new Intent(this, ScoreUpdateActivity.class);
 
 
-            guessIntent.putExtra(GUESS_RECORD, "");
+            //guessIntent.putExtra(GUESS_RECORD, "");
 
 
 
@@ -122,14 +129,28 @@ public class GuessActivity
 
 
             startActivity(guessIntent);
+
+            //TODO needs a give up button.
         }
 
 
     }
 
-    // TODO The count-down stuff still needs to be implemented. I.E.
-    // TODO There has to be a timer so that a lose condition happens if the
-    // TODO player can't guess the drawing.
+    /**
+     * Listens for the giveUp button to be clicked, wherein this
+     * method will assume the guesser has failed, and assign the guesser
+     * and the drawer 0 points.
+     *
+     * @param view
+     *            The button view named "giveUp"
+     */
+    public void giveUp(View view)
+    {
+
+        Intent guessIntent = new Intent(this, ScoreUpdateActivity.class);
+        startActivity(guessIntent);
+    }
+
 
 
 

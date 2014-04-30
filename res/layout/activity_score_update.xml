@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Next Player's turn to draw" 
+        android:text="Guesser's turn to draw" 
         android:onClick="beginNewRound" />
 
     <TextView
