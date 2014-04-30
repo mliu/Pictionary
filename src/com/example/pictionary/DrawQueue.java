@@ -1,9 +1,8 @@
 package com.example.pictionary;
 
+import java.util.NoSuchElementException;
 import android.os.Parcel;
-
 import android.os.Parcelable;
-
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,8 +12,10 @@ import java.util.Queue;
 /**
  * // -------------------------------------------------------------------------
  * /** This class is going to be used as our queue structure for the lines
- * drawn, so they can be removed in order
- *
+ * drawn, so they can be removed in order. If it is supposed to be parceled, the
+ * class assumes you are passing drawObjects, otherwise, any element E is
+ * acceptable
+ * 
  * @param <E>
  * @author Christopher Deisher (cdd5)
  * @version Apr 16, 2014
@@ -33,25 +34,31 @@ public class DrawQueue<E>
         queue = new ArrayList<E>();
     }
 
+
     // ----------------------------------------------------------
     /**
      * Create a new DrawQueue object from a parcel.
-     * @param in the parcelable drawqueue object
+     * 
+     * @param in
+     *            the parcel drawqueue object
      */
-    public DrawQueue(Parcel in) {
+    public DrawQueue(Parcel in)
+    {
         this();
         readFromParcel(in);
     }
 
 
     /**
-     * Unsupported
+     * adds All elements in the list to the queue
+     * 
+     * @param list
+     *            List of things to add
+     * @return if successfully added
      */
-    public boolean addAll(Collection<? extends E> arg0)
+    public boolean addAll(Collection<? extends E> list)
     {
-
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
+        return queue.addAll(list);
 
     }
 
@@ -67,7 +74,7 @@ public class DrawQueue<E>
 
     /**
      * checks to see if the object is in the queue
-     *
+     * 
      * @param object
      *            the object
      * @return true/false
@@ -87,7 +94,7 @@ public class DrawQueue<E>
 
     /**
      * checks to see if multiple items are contained
-     *
+     * 
      * @param ourobj
      *            the objects
      * @return t/f
@@ -116,7 +123,7 @@ public class DrawQueue<E>
 
     /**
      * Sees if array is empty
-     *
+     * 
      * @return t/f
      */
     public boolean isEmpty()
@@ -130,7 +137,7 @@ public class DrawQueue<E>
 
     /**
      * returns a new iterator
-     *
+     * 
      * @return the iterator
      */
     public Iterator<E> iterator()
@@ -142,7 +149,7 @@ public class DrawQueue<E>
 
     /**
      * removes an object
-     *
+     * 
      * @param object
      *            the object to remove
      * @return whether it was succesfully returned
@@ -163,7 +170,7 @@ public class DrawQueue<E>
 
     /**
      * removes an object
-     *
+     * 
      * @param objects
      *            the object to remove
      * @return whether they were succesfully returned
@@ -186,22 +193,21 @@ public class DrawQueue<E>
 
     /**
      * Unsupported
-     *
-     * @param arg0
-     *            useless
-     * @return nothing
+     * 
+     * @param list
+     *            the list of things to retain
+     * @return if successful
      */
-    public boolean retainAll(Collection<?> arg0)
+    public boolean retainAll(Collection<?> list)
     {
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
+        return queue.retainAll(list);
 
     }
 
 
     /**
      * returns the size of the queue
-     *
+     * 
      * @return size
      */
     public int size()
@@ -211,36 +217,38 @@ public class DrawQueue<E>
 
 
     /**
-     * Unsupported
-     *
-     * @return exception
+     * This method returns an array of everything in the queue
+     * 
+     * @return an array of all objects in this queue
      */
     public Object[] toArray()
     {
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
+        return queue.toArray();
 
     }
 
 
     /**
-     * Unsupported
-     *
+     * Returns an array containing all elements contained in this Queue. If the
+     * specified array is large enough to hold the elements, the specified array
+     * is used, otherwise an array of the same type is created. If the specified
+     * array is used and is larger than this Queue, the array element following
+     * the collection elements is set to null.
+     * 
      * @param array
-     *            stop
-     * @return it won't end well
+     *            the array you want to contain elements
+     * @return the new array
      */
     public <T> T[] toArray(T[] array)
     {
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
+        return queue.toArray(array);
 
     }
 
 
     /**
      * add an element
-     *
+     * 
      * @param e
      *            the element
      * @return success?
@@ -253,29 +261,32 @@ public class DrawQueue<E>
 
 
     /**
-     * Unsupported
-     *
-     * @return errors
+     * Like peek, returns front element without removing, but throws an
+     * NoSuchElement exception if empty
+     * 
+     * @return the top element
      */
     public E element()
     {
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
+        if (this.size() == 0)
+        {
+            throw new NoSuchElementException("The Queue is Empty");
+        }
+        return this.peek();
     }
 
 
     /**
-     * Unsupported
-     *
-     * @return errors
+     * Functions exactly like add, as we are not capacity-limited
+     * 
+     * @return true if added
      * @param e
-     *            stuff
+     *            the thing to add
      */
     public boolean offer(E e)
     {
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
 
+        return this.add(e);
     }
 
 
@@ -290,47 +301,89 @@ public class DrawQueue<E>
 
 
     /**
-     * unsupported
-     *
-     * @return useless
+     * Returns and removes the front of the queue, but returns null if empty
+     * 
+     * @return the front of the queue
      */
     public E poll()
     {
-        throw new UnsupportedOperationException(
-            "We don't support this operation");
+        if (this.size() == 0)
+        {
+            return null;
+        }
+        return this.remove();
+
     }
 
 
     /**
      * returns the item at the front and removes it
+     * 
+     * @return the front element
      */
     public E remove()
     {
+        if (this.size() == 0)
+        {
+            throw new NoSuchElementException("Can't Remove from Empty Queue");
+        }
         return queue.remove(0);
     }
 
 
-    public int describeContents() {
-        return 0;
+    /**
+     * Unsupported Operation
+     * 
+     * @return throws errors always
+     */
+    public int describeContents()
+    {
+        throw new UnsupportedOperationException("Not Supported");
     }
 
 
-    public void writeToParcel(Parcel out, int arg1) {
-        out.writeTypedList((ArrayList<DrawObject>) queue);
+    /**
+     * Writes to parcel
+     * 
+     * @param out
+     *            the parcel
+     * @param arg1
+     *            the int
+     */
+    public void writeToParcel(Parcel out, int arg1)
+    {
+        out.writeTypedList((ArrayList<DrawObject>)queue);
     }
 
-    public static final Parcelable.Creator<DrawQueue<DrawObject>> CREATOR = new Parcelable.Creator<DrawQueue<DrawObject>>() {
+    /**
+     * Creates the queue via a parcelable thing
+     */
+    public static final Parcelable.Creator<DrawQueue<DrawObject>> CREATOR =
+                                                                              new Parcelable.Creator<DrawQueue<DrawObject>>() {
+                                                                                  public DrawQueue<DrawObject> createFromParcel(
+                                                                                      Parcel source)
+                                                                                  {
+                                                                                      return new DrawQueue<DrawObject>(
+                                                                                          source);
+                                                                                  }
 
-        public DrawQueue<DrawObject> createFromParcel(Parcel source){
-            return new DrawQueue<DrawObject>(source);
-        }
 
-        public DrawQueue<DrawObject>[] newArray(int size){
-            return new DrawQueue[size];
-        }
-    };
+                                                                                  public DrawQueue<DrawObject>[] newArray(
+                                                                                      int size)
+                                                                                  {
+                                                                                      return new DrawQueue[size];
+                                                                                  }
+                                                                              };
 
-    private void readFromParcel(Parcel in) {
-        in.readTypedList((ArrayList<DrawObject>) queue, DrawObject.CREATOR);
+
+    /**
+     * Reads from parcel
+     * 
+     * @param in
+     *            the Parcel
+     */
+    private void readFromParcel(Parcel in)
+    {
+        in.readTypedList((ArrayList<DrawObject>)queue, DrawObject.CREATOR);
     }
 }

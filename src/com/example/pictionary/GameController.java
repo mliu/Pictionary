@@ -10,7 +10,7 @@ import java.io.Serializable; // Ability to pass objects between activities.
  * implements the Serializable interface in order to be shared between each
  * activity.
  * 
- * @author (cdd5) Chris
+ * @author (cdd5) Chris Deisher
  * @author Edward McEnrue
  * @author Michael Liu
  * @version Apr 16, 2014
