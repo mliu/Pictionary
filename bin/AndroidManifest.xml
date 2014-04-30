@@ -8,7 +8,7 @@
         android:targetSdkVersion="18" />
     
      <instrumentation
-        android:targetPackage="cs2114.minesweeper"
+        android:targetPackage="com.example.pictionary"
         android:name="android.test.InstrumentationTestRunner"/>
     
 <application
