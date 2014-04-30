@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Next Player Draws"
+        android:text="Begin guessing?"
         android:onClick="startGuessing" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Hand the android device to the next player, so that they can start guessing your drawing." />
+        android:text="Hand the android device to the next player, so that they can begin to guess what the name of your artistic piece of fine art is." />
 
     <TextView
         android:id="@+id/nameDrawingInstructions"

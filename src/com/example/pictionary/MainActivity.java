@@ -67,7 +67,7 @@ public class MainActivity
             int playerCount =
                 Integer.valueOf(editTextPlayerCount.getText().toString());
 
-            if (playerCount < 1) // Ensures the amount of players is not 0.
+            if (playerCount < 3 && playerCount < 13) // Ensures the amount of players is feasible.
             {
                 Toast.makeText(
                     getApplicationContext(),
