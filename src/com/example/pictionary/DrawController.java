@@ -19,8 +19,8 @@ public class DrawController {
     /**
      * Constructor for the class, takes the attempted word
      *
-     * @param redrawView
-     *            the view of this drawing
+     * @param initQueue
+     *            the DrawQueue of this drawing
      */
     public DrawController(DrawQueue<DrawObject> initQueue) {
         guessWord = "";
@@ -63,6 +63,7 @@ public class DrawController {
     // ----------------------------------------------------------
     /**
      * Called when redrawing for user
+     * @return the very first object in the DrawQueue
      */
     public DrawObject pop() {
         currentPos++;

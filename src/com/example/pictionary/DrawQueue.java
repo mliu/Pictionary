@@ -3,7 +3,6 @@ package com.example.pictionary;
 import java.util.NoSuchElementException;
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;

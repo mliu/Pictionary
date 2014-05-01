@@ -4,8 +4,6 @@ import android.os.Parcel;
 
 import android.os.Parcelable;
 
-import android.view.MotionEvent;
-
 // -------------------------------------------------------------------------
 /**
  * Object that stores data about user drawing at a certain point.

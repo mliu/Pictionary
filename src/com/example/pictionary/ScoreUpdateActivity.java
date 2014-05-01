@@ -2,7 +2,6 @@ package com.example.pictionary;
 
 
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 import android.content.Intent;

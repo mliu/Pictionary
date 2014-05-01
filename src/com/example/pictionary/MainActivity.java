@@ -5,10 +5,8 @@ import android.widget.EditText;
 import android.content.Intent;
 import android.view.View;
 import com.example.pictionary.R;
-import com.example.pictionary.R.layout;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 
 /**
  * // -------------------------------------------------------------------------
