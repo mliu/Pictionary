@@ -2,9 +2,8 @@ package com.example.pictionary;
 
 /**
  * // -------------------------------------------------------------------------
- * /** Write a one-sentence summary of your class here. Follow it with
- * additional details about its purpose, what abstraction it represents, and how
- * to use it.
+ * Created for managing a drawing, specifically in the redraw view.
+ * Loops through a DrawQueue and helps pass on draw motions to the view
  *
  * @author Pictionary Team (Chris Deisher, Edward McEnrue, Michael Liu)
  * @version Apr 16, 2014

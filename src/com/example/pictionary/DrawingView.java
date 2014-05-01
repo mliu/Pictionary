@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 
 // -------------------------------------------------------------------------
 /**
- * Drawing class in charge of user drawing
+ * View in charge of user drawing
  *
  * @author Michael Liu
  * @version Apr 10, 2014

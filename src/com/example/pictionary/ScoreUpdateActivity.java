@@ -21,14 +21,6 @@ import android.app.Activity;
 public class ScoreUpdateActivity
     extends Activity
 {
-
-
-    // The key value pair to send the recorded score to send for the new round's
-    // DrawActivity.
-    //public final static String SCORE_RECORD = "com.Pictionary.ScoreUpdateActivity.MESSAGE";
-
-    //private TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
-
     /**
      * Creates the new activity for ScoreUpdateActivity and unpacks the
      * intent from GuessActivity.
@@ -42,19 +34,6 @@ public class ScoreUpdateActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_update);
 
-
-
-
-
-        // TODO Get the recorded drawing data from the incoming intent key
-        // value pair relayed from the StartGuessDialog activity, and sent
-        // from the DrawActivity activity.
-        //Intent guessIntent = getIntent();
-
-        //scoreDisplay.setText(MainActivity.controller.getScoreList());
-        //scoreDisplay.setText("bagger 849o5349");
-
-
         TextView scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
         TextView winnerDisplay = (TextView)findViewById(R.id.winnerDisplay);
         Button newMatchButton = (Button)findViewById(R.id.startNewMatch);
@@ -64,7 +43,6 @@ public class ScoreUpdateActivity
         String state = "" + gameState.getScoreList();
 
         scoreDisplay.setText(""+ state);
-
 
         int winner = gameState.isWon();
         if(winner == -1)
@@ -88,15 +66,6 @@ public class ScoreUpdateActivity
         //Left blank intentionally
     }
 
-
-
-
-
-
-    // Getting the button to start the next round's DrawActivity and pass relevant
-    // win/loss rollover data below:
-
-
     /**
      * Listens for the beginNewRound button to be clicked, wherein this method
      * will start the DrawActivity again. This will start the beginning of
@@ -109,16 +78,6 @@ public class ScoreUpdateActivity
     {
         // Build an intent and the key value pair in response to the button.
         Intent newRoundIntent = new Intent(this, DrawActivity.class);
-
-        // TODO Still need to gather and send the guess data to the
-        // DrawActivity.
-        //newRoundIntent.putExtra(SCORE_RECORD, "");
-
         startActivity(newRoundIntent);
-
     }
-
-
-
-
 }

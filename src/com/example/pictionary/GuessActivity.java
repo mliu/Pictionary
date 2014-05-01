@@ -30,10 +30,6 @@ public class GuessActivity
     private RedrawingView redrawingView;
     private DrawController controller;
     private Timer timer;
-
-    // The key value pair to send the recorded drawing to the dialog activity
-    //public final static String GUESS_RECORD = "com.Pictionary.GuessActivity.MESSAGE";
-
     /**
      * Creates the new activity for GuessActivity and unpacks the
      * intent from StartGuessDialog.
@@ -49,11 +45,7 @@ public class GuessActivity
 
 
         Intent drawingIntent = getIntent();
-        drawingName = drawingIntent.getStringExtra("drawing_name"); // The previously entered name for the drawing
-
-
-        // The intent is unpackaged and the queue holding the drawing is
-        // received.
+        drawingName = drawingIntent.getStringExtra("drawing_name");
         Bundle b = this.getIntent().getExtras();
         if (b != null) {
             queue = b.getParcelable("Drawing");
@@ -92,11 +84,6 @@ public class GuessActivity
         //Left blank intentionally
     }
 
-
-
-    // Getting the buttons to start the ScoreUpdateActivity activity and
-    // pass the win/loss data below:
-
     /**
      * Listens for the finishGuessing button to be clicked, wherein this
      * method will check if the guess in the guessBox view is the correct
@@ -115,32 +102,10 @@ public class GuessActivity
         {
             GameController gameState =
                 ((GameController)getApplicationContext());
-
-            gameState.receiveDrawScore(controller.getScore()); // Add points
-
-
-
-
-            // Build an intent and the key value pair in response to the button.
+            gameState.receiveDrawScore(controller.getScore());
             Intent guessIntent = new Intent(this, ScoreUpdateActivity.class);
-
-
-            //guessIntent.putExtra(GUESS_RECORD, "");
-
-
-
-            //MainActivity.controller.addToScore(MainActivity.controller.getCurrentPlayer(), 15);
-            //MainActivity.controller.getScore(1);
-
-
-
-
             startActivity(guessIntent);
-
-            //TODO needs a give up button.
         }
-
-
     }
 
     /**
@@ -157,8 +122,4 @@ public class GuessActivity
         Intent guessIntent = new Intent(this, ScoreUpdateActivity.class);
         startActivity(guessIntent);
     }
-
-
-
-
 }

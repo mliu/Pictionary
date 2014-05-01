@@ -22,12 +22,6 @@ public class MainActivity
     extends Activity
 {
 
-    // public GameController controller; // A new instance of the game is made.
-
-    // The key value pair to send the player amount to DrawActivity
-    // public final static String GAME_CONTROLLER =
-// "com.Pictionary.MainActivity.CONTROLLER";
-
     /**
      * onCreate is called to initialize all activities in Android. This activity
      * is the first.
@@ -52,9 +46,6 @@ public class MainActivity
         //Left blank intentionally
     }
 
-    // Getting the button to start the draw activity and pass player amt info
-    // below:
-
     /**
      * Listens for the startDrawing button to be clicked, and if the editText
      * has information entered, then the DrawActivity activity will be called
@@ -74,7 +65,7 @@ public class MainActivity
             int playerCount =
                 Integer.valueOf(editTextPlayerCount.getText().toString());
 
-            if (playerCount < 3 && playerCount < 13) // Ensures the amount of players is feasible.
+            if (playerCount < 3 && playerCount < 13)
             {
                 Toast.makeText(
                     getApplicationContext(),
@@ -83,7 +74,6 @@ public class MainActivity
             }
             else
             {
-
                 // Build an intent and the key value pairs in response to the
                 // button.
                 GameController gameState =
@@ -91,15 +81,6 @@ public class MainActivity
                 gameState.createScoreList(playerCount);
 
                 Intent mainIntent = new Intent(this, DrawActivity.class);
-
-                // Package the intent with the instance of the game controller
-                // made specifically for this game.
-
-                // controller = new GameController(playerCount);
-
-                // TODO GameController needs to implement serializable
-                // mainIntent.putExtra(GAME_CONTROLLER, controller);
-
                 startActivity(mainIntent);
             }
         }
@@ -112,13 +93,4 @@ public class MainActivity
         }
 
     }
-
-    // TODO Check if the static strings should be final and such
-
-    // TODO Should we hardcode our string values into the @string resource?
-
-    // TODO Find out how to test Toast notifications.
-    // TODO Find out if we need a test class for each activity.
-    // TODO Make sure the game controller isn't unpackaged in terms of an intent
-// in the draw activity twice
 }
