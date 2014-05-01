@@ -8,7 +8,7 @@ import student.TestCase;
 /**
  * // -------------------------------------------------------------------------
  * /** Tests for the DrawQueue and methods
- * 
+ *
  * @author Chris
  * @version Apr 30, 2014
  */

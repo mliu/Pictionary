@@ -48,13 +48,7 @@ public class DrawQueue<E> implements Queue<E>, Parcelable {
      *            List of things to add
      * @return if successfully added
      */
-<<<<<<< HEAD
-    public boolean addAll(Collection<? extends E> list)
-    {
-
-=======
     public boolean addAll(Collection<? extends E> list) {
->>>>>>> ae674083a541277b699bfd4ef849b565eef44020
         return queue.addAll(list);
 
     }
@@ -166,7 +160,7 @@ public class DrawQueue<E> implements Queue<E>, Parcelable {
     /**
 <<<<<<< HEAD
      * Retains only those things passed
-     * 
+     *
 =======
      * Unsupported
      *
@@ -255,17 +249,12 @@ public class DrawQueue<E> implements Queue<E>, Parcelable {
     /**
      * returns the object at the front of the queue
      */
-<<<<<<< HEAD
     public E peek()
     {
         if (this.size() == 0)
         {
             return null;
         }
-=======
-    public E peek() {
-
->>>>>>> ae674083a541277b699bfd4ef849b565eef44020
         return queue.get(0);
     }
 
