@@ -5,34 +5,34 @@
     android:background="#FFCCCCCC"
     android:orientation="vertical" >
 
-	<Button
-	    android:id="@+id/gameStartButton"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:layout_alignParentLeft="true"
-	    android:text="Player 1 Start Drawing"
-	    android:onClick="startDrawing" />
+    <Button
+        android:id="@+id/gameStartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="startDrawing"
+        android:text="Player 1 Start Drawing" />
 
-	<EditText
-	    android:id="@+id/playerAmount"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_centerHorizontal="true"
-	    android:layout_centerVertical="true"
-	    android:ems="10" 
-	    android:inputType="number"
-	    android:hint="# Players?" >
+    <EditText
+        android:id="@+id/playerAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="# Players?"
+        android:inputType="number" >
 
-	    <requestFocus />
-	</EditText>
+        <requestFocus />
+    </EditText>
 
-	<TextView
-	    android:id="@+id/gameInstructions"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentTop="true"
-	    android:layout_centerHorizontal="true"
-	    android:text="Welcome to Pictionary!\nThe goal of the game is to be the first artist or guesser to achieve 500 points. Player 1 is the person who has the device at the moment. Player 1 will draw their picture for player 2 to guess it's name. Don't use any words or letters though! GLHF also no re" />
+    <TextView
+        android:id="@+id/gameInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome to Pictionary!\n\nThe goal of the game is to be the first artist or guesser to achieve 1000 points. Player 1 is the person who has the device at the moment. Player 1 will draw their picture and pass it on to player 2 to guess what it is.\n\nNeeds 3 or more players." />
 
 </RelativeLayout>
