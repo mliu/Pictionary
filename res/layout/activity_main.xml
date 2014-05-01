@@ -22,7 +22,7 @@
 	    android:layout_centerVertical="true"
 	    android:ems="10" 
 	    android:inputType="number"
-	    android:text="Input player amount here" >
+	    android:hint="# Players?" >
 
 	    <requestFocus />
 	</EditText>
