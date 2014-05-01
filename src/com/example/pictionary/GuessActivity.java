@@ -82,6 +82,16 @@ public class GuessActivity
         }, 0, 100);
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
+
 
 
     // Getting the buttons to start the ScoreUpdateActivity activity and

@@ -53,6 +53,15 @@ public class DrawActivity
 
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
 
     // Getting the button to start the StartGuessDialog activity and
     // pass the recorded drawing info below:

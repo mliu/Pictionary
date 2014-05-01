@@ -55,6 +55,16 @@ public class StartGuessDialog
         }
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
+
 
     // Getting the button to start the ScoreUpdateActivity activity and
     // pass the win/loss data below:

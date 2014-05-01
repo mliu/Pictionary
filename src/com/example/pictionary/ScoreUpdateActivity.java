@@ -78,6 +78,16 @@ public class ScoreUpdateActivity
         }
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
+
 
 
 

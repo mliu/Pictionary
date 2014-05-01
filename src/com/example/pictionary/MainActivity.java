@@ -42,6 +42,15 @@ public class MainActivity
         setContentView(R.layout.activity_main);
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
 
     // Getting the button to start the draw activity and pass player amt info
     // below:
