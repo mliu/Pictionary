@@ -1,11 +1,9 @@
 package com.example.pictionary;
 
 import android.view.View;
-import android.widget.EditText;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 
 /**
  * // -------------------------------------------------------------------------
@@ -55,6 +53,15 @@ public class DrawActivity
 
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
 
     // Getting the button to start the StartGuessDialog activity and
     // pass the recorded drawing info below:

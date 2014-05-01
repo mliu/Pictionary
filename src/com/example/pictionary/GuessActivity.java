@@ -62,8 +62,7 @@ public class GuessActivity
         // The redrawingView is given the queue.
         redrawingView = (RedrawingView) this.findViewById(R.id.redrawingView);
         System.out.println(redrawingView);
-        controller = new DrawController(redrawingView);
-        controller.setQueue(queue);
+        controller = new DrawController(queue);
         controller.setWord(drawingName);
 
         // The Ui thread handles the speed at which the drawing is redrawn.
@@ -74,12 +73,23 @@ public class GuessActivity
                 runOnUiThread(new Runnable() {
                     public void run() {
                         if (controller.hasNext()) {
-                            controller.step();
+                            DrawObject step = controller.pop();
+                            redrawingView.step(step);
                         }
                     }
                 });
             }
         }, 0, 100);
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
     }
 
 
@@ -98,9 +108,6 @@ public class GuessActivity
      */
     public void finishGuessing(View view)
     {
-
-
-
         EditText nameGuessBox = (EditText)findViewById(R.id.guessBox);
 
         // The next screen only shows if a correct guess happened.

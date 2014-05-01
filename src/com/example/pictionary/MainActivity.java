@@ -5,10 +5,8 @@ import android.widget.EditText;
 import android.content.Intent;
 import android.view.View;
 import com.example.pictionary.R;
-import com.example.pictionary.R.layout;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 
 /**
  * // -------------------------------------------------------------------------
@@ -44,6 +42,15 @@ public class MainActivity
         setContentView(R.layout.activity_main);
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Overrides the back button to direct to nothing
+     */
+    @Override
+    public void onBackPressed()
+    {
+        //Left blank intentionally
+    }
 
     // Getting the button to start the draw activity and pass player amt info
     // below:

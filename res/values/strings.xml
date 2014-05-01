@@ -1,10 +1,10 @@
 <resources>
 <string name="app_name">Pictionary</string>
-<string name="title_activity_main">MainActivity</string>
+<string name="title_activity_main">Pictionary</string>
 <string name="action_settings">Settings</string>
 <string name="hello_world">Hello world!</string>
-<string name="title_activity_draw">DrawActivity</string>
-<string name="title_activity_guess">GuessActivity</string>
-<string name="title_activity_score_update">ScoreUpdateActivity</string>
-<string name="title_activity_start_guess_dialog">StartGuessDialog</string>
+<string name="title_activity_draw">Draw!</string>
+<string name="title_activity_guess">Guess!</string>
+<string name="title_activity_score_update">ScoreBoard!</string>
+<string name="title_activity_start_guess_dialog">Name!</string>
 </resources>

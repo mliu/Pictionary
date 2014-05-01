@@ -4,8 +4,6 @@ import android.view.SurfaceView;
 
 import android.view.MotionEvent;
 
-import android.view.View;
-
 import android.content.Context;
 import android.util.AttributeSet;
 
@@ -61,6 +59,8 @@ public class RedrawingView extends SurfaceView{
     // ----------------------------------------------------------
     /**
      * Steps through the queue's next object and draws that object
+     * @param d the DrawObject to step through
+     * @return false if no step executed, else true
      */
     public boolean step(DrawObject d) {
         float touchX = d.getX();
