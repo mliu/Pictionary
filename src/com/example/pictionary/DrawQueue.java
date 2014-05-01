@@ -58,6 +58,7 @@ public class DrawQueue<E>
      */
     public boolean addAll(Collection<? extends E> list)
     {
+
         return queue.addAll(list);
 
     }
@@ -192,7 +193,7 @@ public class DrawQueue<E>
 
 
     /**
-     * Unsupported
+     * Retains only those things passed
      * 
      * @param list
      *            the list of things to retain
@@ -295,7 +296,10 @@ public class DrawQueue<E>
      */
     public E peek()
     {
-
+        if (this.size() == 0)
+        {
+            return null;
+        }
         return queue.get(0);
     }
 

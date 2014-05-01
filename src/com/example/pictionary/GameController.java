@@ -41,7 +41,7 @@ public class GameController
      */
     public GameController()
     {
-        winscore = 500;
+        winscore = 1000;
         currentPlayer = 1;
     }
 
