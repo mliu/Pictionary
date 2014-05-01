@@ -332,13 +332,13 @@ public class DrawQueue<E>
 
 
     /**
-     * Unsupported Operation
+     * This returns a int file descriptor
      * 
-     * @return throws errors always
+     * @return FILE DESCRIPTOR INT
      */
     public int describeContents()
     {
-        throw new UnsupportedOperationException("Not Supported");
+        return CONTENTS_FILE_DESCRIPTOR;
     }
 
 
@@ -356,7 +356,7 @@ public class DrawQueue<E>
     }
 
     /**
-     * Creates the queue via a parcelable thing
+     * Creates the queue via a parcelable object
      */
     public static final Parcelable.Creator<DrawQueue<DrawObject>> CREATOR =
                                                                               new Parcelable.Creator<DrawQueue<DrawObject>>() {
